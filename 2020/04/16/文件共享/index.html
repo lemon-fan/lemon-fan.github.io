@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="网站建造, C,Pyhton,Linux">
+    <meta name="keywords" content="文件共享, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>网站建造 | lemon-fan</title>
+    <title>文件共享 | lemon-fan</title>
     <link rel="icon" type="image/png" href="/14.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">网站建造</h1>
+                    <h1 class="description center-align post-title">文件共享</h1>
                 </div>
             </div>
         </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-07
+                    2020-04-16
                 </div>
                 
 
@@ -465,12 +465,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="自建网站过程"><a href="#自建网站过程" class="headerlink" title="自建网站过程"></a>自建网站过程</h1><p>本人白嫖阿里云的服务器没嫖到，就自己买了个服务器，结果一大堆麻烦事，整个域名验证还老不通过，索性就直接用id了。</p>
-<h1 id="一：利用阿里云服务器建网站"><a href="#一：利用阿里云服务器建网站" class="headerlink" title="一：利用阿里云服务器建网站"></a>一：利用阿里云服务器建网站</h1><p>首先你的先有个服务器，本人用的是ubantu的版本，注意这里你在配置服务器的时候需要选择相关网站的镜像，（本人用的是wordpress的镜像）否则的话，就要重新安装服务器系统了。在配置完服务器之后，你可以直接在网页地址栏中输入你的服务器的IP地址就可以直接访问你所设置的网页初始页面。</p>
-<p>我的网站因为设置的是wordpress的类型的博客所以在初始页面中会让我设置登录名，密码，邮箱等。等弄好之后就可以访问你的博客网站了。</p>
-<p>如果还是不太明白可以看这位的建网站过程：<a href="https://developer.aliyun.com/course/70?spm=a2c6h.13788107.J_7606789820.2.3c1961a8aoO1qQ" target="_blank" rel="noopener">https://developer.aliyun.com/course/70?spm=a2c6h.13788107.J_7606789820.2.3c1961a8aoO1qQ</a></p>
-<h1 id="二：利用GitHub和hexo建造个人博客（也是我现在所用的界面）"><a href="#二：利用GitHub和hexo建造个人博客（也是我现在所用的界面）" class="headerlink" title="二：利用GitHub和hexo建造个人博客（也是我现在所用的界面）"></a>二：利用GitHub和hexo建造个人博客（也是我现在所用的界面）</h1><p>这个方法过程有点复杂，本人也不太明白这其中的原理，具体建造过程可以根据这位的教程：<a href="https://yafine-blog.cn/posts/4ab2.html" target="_blank" rel="noopener">https://yafine-blog.cn/posts/4ab2.html</a></p>
-<p>在这里本人也提醒一下，在建造网站的过程中，一定要看好是在哪个文件夹的根目录文件进行相关修改（本人应为这个原因重做了好几次），同时也要及时进行文件的同步，要不然你的网站就没啥变化，最后，提醒一下如果你的网页出现找不到相关页面的话，各以在GitHub上看下你是否有这个文件，如果没有的话就要重新同步一下，如果同步完之后还是没有的话就在你的网站所在文件夹的public文件夹中看下是否有相关文件夹，没有的话就粗暴点自己手动建个然后再同步，基本上就解决了（<del>本人在建网站时因为这个问题都快疯了</del>）。 </p>
+                <h1 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h1><p>本人学了一点文件共享的知识在这里分享一下</p>
+<h1 id="具体操作过程"><a href="#具体操作过程" class="headerlink" title="具体操作过程"></a>具体操作过程</h1><p>创建用户a密码为a<br>命令行：net user a a /add<br>1.创建文件夹，并在文件的属性中找到共享栏，点击高级共享在这里设置你共享的文件夹名字在高级共享中有权限设置，在这里进行相关权限的设置。<br>2.在所共享的文件夹中的安全栏中的高级处点击禁用继承，这时会弹出一个对话框提示你是否对原本的权限进行保留（根据自身需要进行选择），之后回到安全界面选择添加然后选择主体，在输入要选择的对象名称处添加你所想要授权访问的同户名，然后再给你所设置的用户设置权限。（这里你所设置的用户名必须先前在你自己的电脑上已经有的用户名）如果你想在说共享的文件夹中的子文件夹进行权限设置，步骤同上边2相同。<br>3.访问你所共享的文件夹（这里我举的例子是在同一座交换机上，也可以在虚拟机上操作）win+r打开运行窗口输入： //你要访问的共享文件夹所在的主机IP地址，然后的操作有手就行，这里不做过多阐述，另一种方法是访问文件夹也可以在运行窗口输入： //你要访问的共享文件夹所在的主机IP地址/共享文件夹名字 ，之后就可以共享了。</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>如果你想在文件共享中将一些文件隐藏起来，可以在设置文件的共享名时，在文件的共享名后边加一个$符，这样别人在访问这个文件夹时就必须在地址栏上输入： //你的IP地址/共享文件夹名/隐藏的文件夹名$<br>例如我的IP地址为10.1.1.1，我所共享的文件夹名为share我所隐藏的文件夹名为dollar，则我需要在地址栏上输入：//10.1.1.1/share/dollar$</p>
 
             </div>
             <hr/>
@@ -496,7 +493,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/04/07/%E7%BD%91%E7%AB%99%E5%BB%BA%E9%80%A0/">http://lemon-fan.github.io/2020/04/07/%E7%BD%91%E7%AB%99%E5%BB%BA%E9%80%A0/</a>
+                    <a href="http://lemon-fan.github.io/2020/04/16/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">http://lemon-fan.github.io/2020/04/16/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -594,9 +591,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/04/16/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">
                     <div class="card-image">
@@ -615,9 +613,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -626,6 +624,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -636,24 +635,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/04/hello-world/">
+                <a href="/2020/04/07/%E7%BD%91%E7%AB%99%E5%BB%BA%E9%80%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="网站建造">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">网站建造</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            自建网站过程本人白嫖阿里云的服务器没嫖到，就自己买了个服务器，结果一大堆麻烦事，整个域名验证还老不通过，索性就直接用id了。
+一：利用阿里云服务器建网站首先你的先有个服务器，本人用的是ubantu的版本，注意这里你在配置服务器的时候需要选择
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-07
                             </span>
                         <span class="publish-author">
                             
