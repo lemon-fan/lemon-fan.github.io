@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="文件共享, C,Pyhton,Linux">
+    <meta name="keywords" content="IP和DNS的简单叙述, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>文件共享 | lemon-fan</title>
+    <title>IP和DNS的简单叙述 | lemon-fan</title>
     <link rel="icon" type="image/png" href="/14.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">文件共享</h1>
+                    <h1 class="description center-align post-title">IP和DNS的简单叙述</h1>
                 </div>
             </div>
         </div>
@@ -479,8 +479,8 @@
 <p>这里我在说明一点如果你的网段为10.1.1.0，但并不代表你属于10.1.0.0这个网段，每个网段都是相互独立的，就好比不同的人来自不用的国家（网段），虽然他们都是人（IP），有的人来自国土较小的国家，有的人来自国土较大的国家，但并不代表小国就属于大国。同样的如果我的IP为10.1.1.1，子网掩码为：255.255.255.0另一台PC的IP为：20.1.1.1，子网掩码为：255.255.255.0，我们这两台IP是不能通信的，因为我们来自不同的“国家”（网段）。</p>
 <h1 id="DNS服务器"><a href="#DNS服务器" class="headerlink" title="DNS服务器"></a>DNS服务器</h1><p>所谓DNS也称域名解析服务器，这个服务器在我们的日常上网时起到了很重要的作用。</p>
 <p>通常我们在访问一个网站时基本都是输入网站的域名，例如我访问百度时：<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 这就是百度的域名（确切来说是主机名加域名，这里不做过多解释），我访问百度时而不是用百度的IP地址直接访问，这个是由于记住网站的IP实在有点难度，所以，我们就设置了域名（这是我自己的想法，具体为啥不用网站IP还有其他的原因）。</p>
-<h1 id="接下来步入主题"><a href="#接下来步入主题" class="headerlink" title="接下来步入主题"></a>接下来步入主题</h1><h1 id="1-访问一个网站的过程的简单解释（不专业也不完全版）"><a href="#1-访问一个网站的过程的简单解释（不专业也不完全版）" class="headerlink" title="1.访问一个网站的过程的简单解释（不专业也不完全版）"></a>1.访问一个网站的过程的简单解释（不专业也不完全版）</h1><p>首先，你输入网站的域名之后，你的PC会先从你的本地缓存中找是否有你这个域名的缓存，如果没有再从你本地的一个文件中找是否有缓存（一般这个文件都是空的，这里就不多说了），然后通过你的网关也就是你的路由器，发送相关请求到DNS服务器，然后服务器会根据你的请求来进行服务器上的缓存筛选，如果服务器的缓存中有你这个域名的缓存，它会将这个域名所代表服务器的IP地址再通过你的网关发送到你的PC端上，然后你的PC根据这个IP访问相对应的服务器，这是你的PC会有一段时间有对这个域名的缓存，当你在第二次访问这个域名时你的PC会直接根据缓存中的IP地址来访问相关的服务器。</p>
-<h1 id="2-网关的相关解释（不专业也不完全版）"><a href="#2-网关的相关解释（不专业也不完全版）" class="headerlink" title="2.网关的相关解释（不专业也不完全版）"></a>2.网关的相关解释（不专业也不完全版）</h1><p>一般来说我们组建局域网（内网）需要同过交换机，而交换机的作用其实相当于一个中介，例如：有两台PC，原本不能相互通讯，当这两台PC连上同一个交换机时就能够相互通讯，如果电脑A想发送信息到电脑B，那么这其中的过程为A所发送的信息到交换机，再由交换机转到B。</p>
+<h2 id="接下来步入主题"><a href="#接下来步入主题" class="headerlink" title="接下来步入主题"></a>接下来步入主题</h2><h3 id="1-访问一个网站的过程的简单解释（不专业也不完全版）"><a href="#1-访问一个网站的过程的简单解释（不专业也不完全版）" class="headerlink" title="1.访问一个网站的过程的简单解释（不专业也不完全版）"></a>1.访问一个网站的过程的简单解释（不专业也不完全版）</h3><p>首先，你输入网站的域名之后，你的PC会先从你的本地缓存中找是否有你这个域名的缓存，如果没有再从你本地的一个文件中找是否有缓存（一般这个文件都是空的，这里就不多说了），然后通过你的网关也就是你的路由器，发送相关请求到DNS服务器，然后服务器会根据你的请求来进行服务器上的缓存筛选，如果服务器的缓存中有你这个域名的缓存，它会将这个域名所代表服务器的IP地址再通过你的网关发送到你的PC端上，然后你的PC根据这个IP访问相对应的服务器，这是你的PC会有一段时间有对这个域名的缓存，当你在第二次访问这个域名时你的PC会直接根据缓存中的IP地址来访问相关的服务器。</p>
+<h3 id="2-网关的相关解释（不专业也不完全版）"><a href="#2-网关的相关解释（不专业也不完全版）" class="headerlink" title="2.网关的相关解释（不专业也不完全版）"></a>2.网关的相关解释（不专业也不完全版）</h3><p>一般来说我们组建局域网（内网）需要同过交换机，而交换机的作用其实相当于一个中介，例如：有两台PC，原本不能相互通讯，当这两台PC连上同一个交换机时就能够相互通讯，如果电脑A想发送信息到电脑B，那么这其中的过程为A所发送的信息到交换机，再由交换机转到B。</p>
 <p>上述的情况只能够在一个局域网内进行，如果想连到外网，这里就需要路由器，而路由器就相当于内网与外网相连接窗口，我们普通家用的路由器基本上可以说是是交换机和路由器的“合体”。</p>
 
             </div>
@@ -618,9 +618,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="文件共享">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="IP和DNS的简单叙述">
                         
-                        <span class="card-title">文件共享</span>
+                        <span class="card-title">IP和DNS的简单叙述</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
