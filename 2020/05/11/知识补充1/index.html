@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="IP和DNS的简单叙述, C,Pyhton,Linux">
+    <meta name="keywords" content="知识补充1, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>IP和DNS的简单叙述 | lemon-fan</title>
+    <title>知识补充1 | lemon-fan</title>
     <link rel="icon" type="image/png" href="/14.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">IP和DNS的简单叙述</h1>
+                    <h1 class="description center-align post-title">知识补充1</h1>
                 </div>
             </div>
         </div>
@@ -452,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-20
+                    2020-05-11
                 </div>
                 
 
@@ -471,17 +471,18 @@
             <div id="articleContent">
                 <a id="more"></a>
 
-<h1 id="IP的简单叙述前的部分知识补充"><a href="#IP的简单叙述前的部分知识补充" class="headerlink" title="IP的简单叙述前的部分知识补充"></a>IP的简单叙述前的部分知识补充</h1><p>众所周知，我们每一个普通的个人电脑都会有一个IP，那么IP是什么呢？</p>
-<p>本人认为IP是一种标识性的编码，其实现在通用的普通IP是32二进制编码，但为了方便记忆一般都是将IP进行了十进制的翻译，且在翻译为十进制时，每个字节最多为3位，（有一些基本常识都知道在电脑中二进制是8位为一个字节，所以翻译为十进制最大为三位数），所以十进制下的IP地址每个字节最多为3位。</p>
-<p>这里作为对IP地址的进一步的补充，我首先说一下网段这个概念，比如说：一个不懂中文的外国人和一个不懂英文的中国人在口语方面不能进行交流，同样的来自不同网段的的PC由于规则限制也不能够交流（这里可以将语言的不同比作为规则的限制，不同的人比作为不同网段的PC），说这麽多我们可以通过举例来说明一个网段的具体实现。</p>
-<p>例如：10.1.1.1-10.1.1.255这一段IP可以说是一个网段，就好比在同一国家的人能够实现互相的语言交流（不同PC的交流），当然发现这个网段的IP数目有点少，我们也可以将10.1.1.1-10.1.255.255当作一个网段，这样一来IP数目就多了，能够交流的人也就多了，同样的我们可以将10.1.1.1-10.255.255.255当作一个网段，而通常我们会用10.1.1.0来表示10.1.1.1-10.1.1.255这个网段。</p>
-<p>说这么多，那怎么在获取一个IP地址时知道它是哪个网段呢？这里我介绍一个概念：子网掩码，我们在命令行输入ipconfig可以看到我们自己PC端的IP地址，通常我们在IPv4下一行会看到子网掩码，那么子网掩码到底是干啥的？这里我举例说明一下：<br>例如我的IP为10.1.1.1，此时子网掩码为255。255.255.0，那么我的IP就属于10.1.1.0这个网段其中的一个IP，如果我的子网掩码为255.255.0.0，那么我的IP就属于10.1.0.0这个网段，其实子网掩码就是对网段位数的限制。</p>
-<p>这里我在说明一点如果你的网段为10.1.1.0，但并不代表你属于10.1.0.0这个网段，每个网段都是相互独立的，就好比不同的人来自不用的国家（网段），虽然他们都是人（IP），有的人来自国土较小的国家，有的人来自国土较大的国家，但并不代表小国就属于大国。同样的如果我的IP为10.1.1.1，子网掩码为：255.255.255.0另一台PC的IP为：20.1.1.1，子网掩码为：255.255.255.0，我们这两台IP是不能通信的，因为我们来自不同的“国家”（网段）。</p>
-<h1 id="DNS服务器"><a href="#DNS服务器" class="headerlink" title="DNS服务器"></a>DNS服务器</h1><p>所谓DNS也称域名解析服务器，这个服务器在我们的日常上网时起到了很重要的作用。</p>
-<p>通常我们在访问一个网站时基本都是输入网站的域名，例如我访问百度时：<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 这就是百度的域名（确切来说是主机名加域名，这里不做过多解释），我访问百度时而不是用百度的IP地址直接访问，这个是由于记住网站的IP实在有点难度，所以，我们就设置了域名（这是我自己的想法，具体为啥不用网站IP还有其他的原因）。</p>
-<h2 id="接下来步入主题"><a href="#接下来步入主题" class="headerlink" title="接下来步入主题"></a>接下来步入主题</h2><h3 id="1-访问一个网站的过程的简单解释（不专业也不完全版）"><a href="#1-访问一个网站的过程的简单解释（不专业也不完全版）" class="headerlink" title="1.访问一个网站的过程的简单解释（不专业也不完全版）"></a>1.访问一个网站的过程的简单解释（不专业也不完全版）</h3><p>首先，你输入网站的域名之后，你的PC会先从你的本地缓存中找是否有你这个域名的缓存，如果没有再从你本地的一个文件中找是否有缓存（一般这个文件都是空的，这里就不多说了），然后通过你的网关也就是你的路由器，发送相关请求到DNS服务器，然后服务器会根据你的请求来进行服务器上的缓存筛选，如果服务器的缓存中有你这个域名的缓存，它会将这个域名所代表服务器的IP地址再通过你的网关发送到你的PC端上，然后你的PC根据这个IP访问相对应的服务器，这是你的PC会有一段时间有对这个域名的缓存，当你在第二次访问这个域名时你的PC会直接根据缓存中的IP地址来访问相关的服务器。</p>
-<h3 id="2-网关的相关解释（不专业也不完全版）"><a href="#2-网关的相关解释（不专业也不完全版）" class="headerlink" title="2.网关的相关解释（不专业也不完全版）"></a>2.网关的相关解释（不专业也不完全版）</h3><p>一般来说我们组建局域网（内网）需要同过交换机，而交换机的作用其实相当于一个中介，例如：有两台PC，原本不能相互通讯，当这两台PC连上同一个交换机时就能够相互通讯，如果电脑A想发送信息到电脑B，那么这其中的过程为A所发送的信息到交换机，再由交换机转到B。</p>
-<p>上述的情况只能够在一个局域网内进行，如果想连到外网，这里就需要路由器，而路由器就相当于内网与外网相连接窗口，我们普通家用的路由器基本上可以说是是交换机和路由器的“合体”。</p>
+
+<h1 id="组与管理（本人目前就学了这么多如果有不对的地方欢迎指正）"><a href="#组与管理（本人目前就学了这么多如果有不对的地方欢迎指正）" class="headerlink" title="组与管理（本人目前就学了这么多如果有不对的地方欢迎指正）"></a>组与管理（本人目前就学了这么多如果有不对的地方欢迎指正）</h1><p>我们每一个人的电脑上都会有用户，而每一个用户的权限不一样，将相同权限的用户归于同一个族中就会形成不同的组，例如在win10系统中我们一般登录的话都是用自己的用户名和密码登录，win7中会发现我们登陆时用户名为Administrator，在这里win10与win7不同的是win10将Administrator同用户分离出来相当于是一样的“分身”，而我们所用的是分离出来的这一个。说了这么多，那么我们的电脑上到底有多少用户，<del>在这里我先对组进行解释再对用户进行解释</del>，我们电脑上的组大致分为（win10）：</p>
+<p><strong>vmware</strong><br>Administrators<br>Device Owners<br>Distributed COM Users<br>Event Log Readers<br>Guests<br>Hyper-V Administrators<br>IIS_IUSRS<br>Performance Log Users<br>Performance Monitor Users<br>Remote Management Users<br>System Managed Accounts Group<br>Users</p>
+<p>我的组可能和一般的不一样（<del>我装了某些软件的原因</del>），这其中权限最高的是Administrators（管理员组）这个组，而我们平常登录电脑时所用的用户名就在这个组中，但是这并不代表我们就有最高权限，在这个组中administrator有着最高权限，相当于可以对电脑上的设置进行修改，这里的Guests组是一个来访外宾组，这个组中的成员可以对你电脑上的文件进行访问，但无法进行修改，上传等功能，也就说这个组里的用户权限很小。接着我们来说一下Users这个组，这个组的成员的权限比Guests大，但比Administrators小，如果我们新建一个用户的话默认实在这个组里，如果想要对新建的用户进行权限的升级请往下看。</p>
+<h2 id="用户标识符（SID）"><a href="#用户标识符（SID）" class="headerlink" title="用户标识符（SID）"></a>用户标识符（SID）</h2><p>我们每个用户在电脑上都会自己的SID，而SID相当于我们的身份证，一般来说，Windows普通用户的SID从1000开始（包括我们自己登陆时用的用户），而管理员也就是Administrator这个用户的SID是从500开始的。</p>
+<h2 id="用户整体知识的补充"><a href="#用户整体知识的补充" class="headerlink" title="用户整体知识的补充"></a>用户整体知识的补充</h2><p>一个电脑的用户总体上分为三类（这里所说的是整体同上边的不一样）：system 系统账户（权限至高无上），localservices本地服务账户（普通权限），networkservices网络服务账户（普通权限），而我们上边所说的Administrators组隶属于localservices这里，而我们如果有些系统设置需要对注册表的值进行修改有时候就需要用到system这个账户（有些注册表Administrator用户权限不够），同时我们如果将win10系统默认的文件共享关闭的话也需要用到这个账户。在这里我进行一个知识补充，我们一般的用户开机密码，一些软件的登录密码等都存储在C:\windows\system32\config\SAM这个文件里（别想着去打开这个文件，凭你的权限还打不开），如果我们想要打开这个文件，就需要用到这个账户。在windows系统上，默认密码最长有效期42天（尤其是服务器系统）。</p>
+<h1 id="介绍个部分win7和win10的漏洞"><a href="#介绍个部分win7和win10的漏洞" class="headerlink" title="介绍个部分win7和win10的漏洞"></a>介绍个部分win7和win10的漏洞</h1><p>我们在开机时输入登陆密码的界面按五次shift键，会弹出c:\windows\system32\sethc.exe程序，这时候直接重启，在重启到正在载入Windows界面是直接关机再重启，这时候会出现多个选择，选择启动启动修复选项，这之后会出现系统还原的提示，点击取消，在等待几分钟之后会出现问题原因框，点击查看详细信息，下拉点击扩展名为.txt的链接会出现一个记事本，这时候点击文件，点击打开，然后找到C:\windows\system32这个文件，然后找到cmd.exe这个程序，复制一份，将文件名改为sethc，再将原来sethc.exe这个程序的名称改为其他的，之后再次重启，再按五次shift键出来的就是cmd命令行了，之后的操作就不多说了-.-。</p>
+<h1 id="简单的命令行命令（懒得做代码块了）"><a href="#简单的命令行命令（懒得做代码块了）" class="headerlink" title="简单的命令行命令（懒得做代码块了）"></a>简单的命令行命令（懒得做代码块了）</h1><p>netstat -an<br>查看本机所有开放端口<br>telnet：23<br>远程桌面协议RDP：3389<br>文件共享服务：445<br>HTTP协议端口号：TCP：80<br>HTTPS协议端口号：TCP：443<br>FTP端口号： TCP： 20/21  </p>
+<p>whoami    查看当前用户名<br>whoami  /user 查看当前用户名以及SID<br>net share   查看共享文件夹的目录<br>net share  共享文件夹名 /del   删除共享</p>
+<p>ipconfig    查看自己本机的IP<br>ipconfig /all   查看自己本机的所有IP<br>ipconfig /release  释放IP<br>ipcofig /renew  重新获取IP<br>ipconfig /flushdns  删除本地dns缓存</p>
+<p>net user 显示全部用户<br>net user laji 显示用户laji的信息<br>net user laji 1 将用户laji的密码改为1<br>net user laji /add 增加用户laji<br>net user laji /del 删除用户laji<br>net user laji /active:yes 激活用户laji<br>net user laji /active:no 禁用用户laji</p>
+<p>net localgroup 显示全部本地组<br>net localgroup administrators 显示组administrators的成员<br>net localgroup ceo /add 增加组ceo<br>net localgroup ceo /del 删除组ceo<br>net localgroup ceo laji /add 向组ceo中加入成员laji<br>net localgroup ceo laji /del 向组ceo中删除成员laji</p>
 
             </div>
             <hr/>
@@ -507,7 +508,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/04/20/IP%E5%92%8CDNS%E7%9A%84%E7%AE%80%E5%8D%95%E5%8F%99%E8%BF%B0/">http://lemon-fan.github.io/2020/04/20/IP%E5%92%8CDNS%E7%9A%84%E7%AE%80%E5%8D%95%E5%8F%99%E8%BF%B0/</a>
+                    <a href="http://lemon-fan.github.io/2020/05/11/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%851/">http://lemon-fan.github.io/2020/05/11/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%851/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -609,9 +610,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/05/11/%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%851/">
                     <div class="card-image">
@@ -632,9 +634,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -643,6 +645,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -661,13 +664,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/16/%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB/">
+                <a href="/2020/04/20/IP%E5%92%8CDNS%E7%9A%84%E7%AE%80%E5%8D%95%E5%8F%99%E8%BF%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="文件共享">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="IP和DNS的简单叙述">
                         
-                        <span class="card-title">文件共享</span>
+                        <span class="card-title">IP和DNS的简单叙述</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -675,13 +678,13 @@
                         
                             
 
-文件共享本人学了一点文件共享的知识在这里分享一下
-具体操作过程创建用户a密码为a命令行：net user a a /add1.创建文件夹，并在文件的属性中找到共享栏，点击高级共享在这里设置你共享的文件夹名字在高级共享中有权限设置，在这里
+IP的简单叙述前的部分知识补充众所周知，我们每一个普通的个人电脑都会有一个IP，那么IP是什么呢？
+本人认为IP是一种标识性的编码，其实现在通用的普通IP是32二进制编码，但为了方便记忆一般都是将IP进行了十进制的翻译，且在翻译为十进制
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-20
                             </span>
                         <span class="publish-author">
                             
