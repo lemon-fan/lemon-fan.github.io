@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, C,Pyhton,Linux">
+    <meta name="keywords" content="vlan的了解, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | lemon-fan</title>
+    <title>vlan的了解 | lemon-fan</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/14.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">vlan的了解</h1>
                 </div>
             </div>
         </div>
@@ -434,9 +434,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">web基础</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -448,28 +452,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-09-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-09-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -485,19 +489,20 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+                <a id="more"></a>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>#vlan产生的原因</p>
+<p>在局域网中，由于我们的PC会经常性的发送广播，例如ARP广播，交换机的广播等等，我们的PC对于广播会直接接收，如果广播的内容对于我们自身的PC无用则会被丢弃，而如果一个局域网中连接的PC数量较多的话我们的PC则会运行直接“爆炸“，同时也是为了防止局域网中的广播攻击，于是就有了vlan这一技术。</p>
+<p>#vlan的介绍</p>
+<p>vlan主要是部署在交换机上的一种技术，我们日常生活中所用的路由器则没有这种技术，一般管理型的交换机会具有这种技术，vlan的具体实现原理为将同一局域网分为不同的虚拟局域网，简单来说就是让同一局域网中的PC相当于位于不同局域网，这样一来就会缩减广播域，减少每一台PC的接收广播的负担，而vlan实现这样工作的原理就是在交换机接收你的数据包之后跟据数据包中的MAC地址进行转发，但是在转发到目标PC连接的端口时目标端口会检查数据包来源是不是和自己在同一vlan如果不是数据包则会被丢弃，如果是则会让其通过。</p>
+<p>#vlan的部署</p>
+<p>vlan的部署我了解的有三种，第一种vlan的部署是基于交换机连接端口的部署，举个例子，一台交换机上部署有两个vlan，分别为vlan1和vlan2，分别连接有两台PC如果这两台PC交换连接的福安口，那么这两台PC就会转换所处的vlan。第二种则是基于MAC地址的vlan，它和第一种相似之处都是需要手工配置，但是他会根据所连接的PC的MAC地址来进行vlan的转换。第三种则需要账号密码验证机制，其中原理我了解不多所以就不说了，但这种机制只需要你输入账号密码在验证通过之后就会为你的PC动态设置所属vlan，这种机制也是则方便的机制。</p>
+<p>#vlan中的trunk</p>
+<p>我们在设置好同一台交换机上的vlan之后，在连接其他配置好vlan的交换机后我们会发现在同一个vlan上但连接不同的交换机的PC之间不能够通信，所以vlan中的trunk技术就有用了，由于交换机之间互相连接的端口一般是属于vlan1的而我们自己如果配置好vlan的话一般就造成了这个连接端口与其他vlan分开，而不同vlan之间又不能通信，而trunk技术的作用就是让这个交换机之间互相连接的端口不属于任何一个vlan，这样所有的vlan数据就都能够通过这个公共链路进行传输。</p>
+<p>#trunk的注意事项</p>
+<p>trunk帮助我们解决了不同交换机之间相同vlan的通信，但是数据在传输到另一台交换机之后是怎么识别数据来自哪一个vlan的又是一个问题，这里trunk中配备的有一个协议具体如下：在交换机收到来自不同vlan的数据之后会将这个数据打上一个标签，在另一台交换机收到数据上之后会将解除这个标签并且确认数据的来源是哪一个vlan，之后再进行传输。而这个打标签的方法目前有两种分别为：lsl标签这个为Cisco公司私有的打上标签的方法，具体为将你的数据帧前加上一个26字节的数据同时也会在你的数据帧后加上一个4个字节的数据，另一种则为802.1q，这个是国际公共的加标签的协议，具体为在你的数据帧中间加上4个字节的数据。</p>
+<p>vlan中连接PC的端口我们一般称之为接入端口，只能属于一个vlan也只能传输一个vlan的数据，而像那种连接不同交换机的端口则为中继端口，也称之为公共端口，能够允许所有vlan的数据通过。</p>
+<p>注意：交换机在接收到带有标签的数据震后是会吧数据标签拿下来鉴定数据传输的具体端口之后再进行转发，而标签呗拿下来之后就会被丢弃不会再被加上，我们的PC不能识别带有标签的数据帧！</p>
 
             </div>
             <hr/>
@@ -523,7 +528,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/04/04/hello-world/">http://lemon-fan.github.io/2020/04/04/hello-world/</a>
+                    <a href="http://lemon-fan.github.io/2020/09/16/vlan%E7%9A%84%E4%BA%86%E8%A7%A3/">http://lemon-fan.github.io/2020/09/16/vlan%E7%9A%84%E4%BA%86%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -560,7 +565,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/web%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">web基础</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -621,17 +630,67 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/04/07/%E7%BD%91%E7%AB%99%E5%BB%BA%E9%80%A0/">
+                <a href="/2020/09/16/vlan%E7%9A%84%E4%BA%86%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="网站建造">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="vlan的了解">
                         
-                        <span class="card-title">网站建造</span>
+                        <span class="card-title">vlan的了解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+
+#vlan产生的原因
+在局域网中，由于我们的PC会经常性的发送广播，例如ARP广播，交换机的广播等等，我们的PC对于广播会直接接收，如果广播的内容对于我们自身的PC无用则会被丢弃，而如果一个局域网中连接的PC数量较多的话我们的PC则会运
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lemon-fan
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">web基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/08/18/MSF%E4%B8%AD%E7%9A%84%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="MSF中的永恒之蓝">
+                        
+                        <span class="card-title">MSF中的永恒之蓝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -640,14 +699,13 @@
                             
 
 
-自建网站过程本人白嫖阿里云的服务器没嫖到，就自己买了个服务器，结果一大堆麻烦事，整个域名验证还老不通过，索性就直接用id了。
-一：利用阿里云服务器建网站首先你的先有个服务器，本人用的是ubantu的版本，注意这里你在配置服务器的时候需
+永恒之蓝漏洞永恒之蓝漏洞是于2017年发布的漏洞，可以说是一个危害性很大的漏洞，不过在此漏洞发布后不久各大厂商都做出了相关的补丁，有兴趣的可以去360上查看补丁。而永恒之蓝漏洞利用的主要是SVB这个协议，而所利用的我们PC上的445端
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -659,49 +717,11 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BD%91%E7%AB%99%E7%9A%84%E5%BB%BA%E9%80%A0/">
-                        <span class="chip bg-color">网站的建造</span>
+                    <a href="/tags/web%E4%B8%AD%E7%9A%84%E6%B8%97%E9%80%8F/">
+                        <span class="chip bg-color">web中的渗透</span>
                     </a>
                     
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/04/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            lemon-fan
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>
