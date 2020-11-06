@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vlan的了解, C,Pyhton,Linux">
+    <meta name="keywords" content="vulbhub-DC2, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vlan的了解 | lemon-fan</title>
+    <title>vulbhub-DC2 | lemon-fan</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/14.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vlan的了解</h1>
+                    <h1 class="description center-align post-title">vulbhub-DC2</h1>
                 </div>
             </div>
         </div>
@@ -445,6 +445,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
+                                web渗透
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -452,28 +461,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-16
+                    2020-11-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-16
+                    2020-11-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    915
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    3 分
                 </div>
                 
 
@@ -491,13 +500,41 @@
             <div id="articleContent">
                 <a id="more"></a>
 
-<h1 id="vlan产生的原因"><a href="#vlan产生的原因" class="headerlink" title="vlan产生的原因"></a>vlan产生的原因</h1><p>在局域网中，由于我们的PC会经常性的发送广播，例如ARP广播，交换机的广播等等，我们的PC对于广播会直接接收，如果广播的内容对于我们自身的PC无用则会被丢弃，而如果一个局域网中连接的PC数量较多的话我们的PC则会运行直接“爆炸“，同时也是为了防止局域网中的广播攻击，于是就有了vlan这一技术。</p>
-<h1 id="vlan的介绍"><a href="#vlan的介绍" class="headerlink" title="vlan的介绍"></a>vlan的介绍</h1><p>vlan主要是部署在交换机上的一种技术，我们日常生活中所用的路由器则没有这种技术，一般管理型的交换机会具有这种技术，vlan的具体实现原理为将同一局域网分为不同的虚拟局域网，简单来说就是让同一局域网中的PC相当于位于不同局域网，这样一来就会缩减广播域，减少每一台PC的接收广播的负担，而vlan实现这样工作的原理就是在交换机接收你的数据包之后跟据数据包中的MAC地址进行转发，但是在转发到目标PC连接的端口时目标端口会检查数据包来源是不是和自己在同一vlan如果不是数据包则会被丢弃，如果是则会让其通过。</p>
-<h1 id="vlan的部署"><a href="#vlan的部署" class="headerlink" title="vlan的部署"></a>vlan的部署</h1><p>vlan的部署我了解的有三种，第一种vlan的部署是基于交换机连接端口的部署，举个例子，一台交换机上部署有两个vlan，分别为vlan1和vlan2，分别连接有两台PC如果这两台PC交换连接的福安口，那么这两台PC就会转换所处的vlan。第二种则是基于MAC地址的vlan，它和第一种相似之处都是需要手工配置，但是他会根据所连接的PC的MAC地址来进行vlan的转换。第三种则需要账号密码验证机制，其中原理我了解不多所以就不说了，但这种机制只需要你输入账号密码在验证通过之后就会为你的PC动态设置所属vlan，这种机制也是则方便的机制。</p>
-<h1 id="vlan中的trunk"><a href="#vlan中的trunk" class="headerlink" title="vlan中的trunk"></a>vlan中的trunk</h1><p>我们在设置好同一台交换机上的vlan之后，在连接其他配置好vlan的交换机后我们会发现在同一个vlan上但连接不同的交换机的PC之间不能够通信，所以vlan中的trunk技术就有用了，由于交换机之间互相连接的端口一般是属于vlan1的而我们自己如果配置好vlan的话一般就造成了这个连接端口与其他vlan分开，而不同vlan之间又不能通信，而trunk技术的作用就是让这个交换机之间互相连接的端口不属于任何一个vlan，这样所有的vlan数据就都能够通过这个公共链路进行传输。</p>
-<h1 id="trunk的注意事项"><a href="#trunk的注意事项" class="headerlink" title="trunk的注意事项"></a>trunk的注意事项</h1><p>trunk帮助我们解决了不同交换机之间相同vlan的通信，但是数据在传输到另一台交换机之后是怎么识别数据来自哪一个vlan的又是一个问题，这里trunk中配备的有一个协议具体如下：在交换机收到来自不同vlan的数据之后会将这个数据打上一个标签，在另一台交换机收到数据上之后会将解除这个标签并且确认数据的来源是哪一个vlan，之后再进行传输。而这个打标签的方法目前有两种分别为：lsl标签这个为Cisco公司私有的打上标签的方法，具体为将你的数据帧前加上一个26字节的数据同时也会在你的数据帧后加上一个4个字节的数据，另一种则为802.1q，这个是国际公共的加标签的协议，具体为在你的数据帧中间加上4个字节的数据。</p>
-<p>vlan中连接PC的端口我们一般称之为接入端口，只能属于一个vlan也只能传输一个vlan的数据，而像那种连接不同交换机的端口则为中继端口，也称之为公共端口，能够允许所有vlan的数据通过。</p>
-<p>注意：交换机在接收到带有标签的数据震后是会吧数据标签拿下来鉴定数据传输的具体端口之后再进行转发，而标签呗拿下来之后就会被丢弃不会再被加上，我们的PC不能识别带有标签的数据帧！</p>
+<h1 id="1-信息收集"><a href="#1-信息收集" class="headerlink" title="1.信息收集"></a>1.信息收集</h1><p>在布置好靶场之后我们利用相关工具进行一波内网扫描，我这里用的是自己找的扫描软件，可以推荐用nmap，</p>
+<p><img src="https://imgchr.com/i/Bfgrp6" alt="alt"></p>
+<p>在扫描出相应的IP地址之后直接访问发现访问不了，治理是由于我们本地的解析问题，需要我们对host文件进行更新，Windows下是在C:\Windows\System32\drivers\etc中的host文件中进行更新，在更新完成之后我们可以直接访问靶场页面。</p>
+<p><img src="https://imgchr.com/i/Bfgvhq" alt="alt"></p>
+<p>打开之后发现是wordpress4.7.10版本的博客，可以发现flag1。</p>
+<p><img src="https://imgchr.com/i/Bf2wDg" alt="alt"></p>
+<h1 id="2-用户收集和尝试爆破"><a href="#2-用户收集和尝试爆破" class="headerlink" title="2.用户收集和尝试爆破"></a>2.用户收集和尝试爆破</h1><p>提示让我们使用cewl，所以我们首先用wpscan扫描网站的用户命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url dc-2 --enumerate u</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgchr.com/i/Bf2c80" alt="alt"></p>
+<p>可以看到有admin，jerry，Tom三个用户，在flag1中提示使用cewl，这是一个kali中用于爬取指定URL指定深度的ruby应用，然后将所爬取的内容通过指令输出到指定的文件夹中，在这个靶场中我们用到的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cewl -w pwd.txt dc-2       将爬取的内容输出到pwd.txt文件中</span><br><span class="line"></span><br><span class="line">cat pwd.txt            顺便查看一下爬取结果</span><br><span class="line"></span><br><span class="line">wpscan --url dc-2 -P pwd.txt -U admin         爆破admin的密码，不用想了肯定爆破不出来</span><br><span class="line"></span><br><span class="line">wpscan --url dc-2 -P pwd.txt -U jerry             爆破jerry的密码，这个是可以得到的</span><br><span class="line"></span><br><span class="line">wpscan --url dc-2 -P pwd.txt -U tom               爆破tom的密码，这个也可以得到</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgchr.com/i/BfR9PI" alt="alt"></p>
+<p><img src="https://imgchr.com/i/BfRKGq" alt="alt"></p>
+<h1 id="3-后台登入"><a href="#3-后台登入" class="headerlink" title="3.后台登入"></a>3.后台登入</h1><p>然后我们使用jerry的账号进行登入wordpress得到后台，这里提示一下一般wordpress的默认登录页面为wp-login.php我们在登录jerry的账号之后发现了flag2提示我们换一种方法进行渗透。</p>
+<p><img src="https://imgchr.com/i/BfRRJI" alt="alt"></p>
+<h1 id="4-ssh连接和提权"><a href="#4-ssh连接和提权" class="headerlink" title="4.ssh连接和提权"></a>4.ssh连接和提权</h1><p>然后，我们这时候肯定会感觉抓瞎，而我们在信息收集的时候是不是发现了一个ssh端口，这时候我们通过kali利用tom的账号连接靶机发现连接成功，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh tom@192.168.146.140 -p 7744</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgchr.com/i/BfWESx" alt="alt"></p>
+<p>在连接成功之后，ls一下发现了flag3.txt文件，cat一下，发现没有权限，根据提示我们发现tom用户呗rbash了，所谓的rbash就是受限制的shell，瞬间感觉tom用户是真的卑微，不过我们可以直接vi flag3.txt这样我们就可以看到其中的内容。</p>
+<p><img src="https://imgchr.com/i/BfWu0e" alt="alt"></p>
+<p>打开之后发现解释是tom很老了，也许他需要用其他的方式来抓老鼠，实际上就是提示我们提升tom用户的权限，我在看了很多的提权方法之后，觉得是tom用户权限受限制的原因是环境变量的原因，那么我们下一步就是改变tom的环境变量，命令如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BASH_CMDS[a]&#x3D;&#x2F;bin&#x2F;sh   ;   a        #调用bin文件下的sh命令解释器</span><br><span class="line">&#x2F;bin&#x2F;bash   #使用bash命令解释器</span><br><span class="line">export PATH&#x3D;PATH:&#x2F;bin:&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;usr&#x2F;sbin  #设置环境变量</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgchr.com/i/BfW8pt" alt="alt"></p>
+<p>在设置好环境变量之后我们就可以用cd命令，也就是说我们的权限成功提升了，cd到/home下我们看到jerry用户进入jerry用户的文件，看到了flag4.txt文件，我们cat一下发现文件提示我们利用git，所以我们su一下到jerry用户，发现jerry用户可以以root的权限来运行git，这就是一个可以提权的点.</p>
+<p><img src="https://imgchr.com/i/BfWU0g" alt="alt"></p>
+<p>然后利用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo git help config  #进入文件</span><br><span class="line">!&#x2F;bin&#x2F;bash           #成功提权</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://imgchr.com/i/BfWhN9" alt="alt"></p>
+<p><img src="https://imgchr.com/i/BfWI91" alt="alt"></p>
+<p>我们在成功提权之后直接进入到root目录下就可以看到最终的flag.</p>
 
             </div>
             <hr/>
@@ -523,7 +560,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/09/16/vlan%E7%9A%84%E4%BA%86%E8%A7%A3/">http://lemon-fan.github.io/2020/09/16/vlan%E7%9A%84%E4%BA%86%E8%A7%A3/</a>
+                    <a href="http://lemon-fan.github.io/2020/11/05/vulbhub-DC2/">http://lemon-fan.github.io/2020/11/05/vulbhub-DC2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,17 +662,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/09/18/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%E5%92%8CICMP%E5%8D%8F%E8%AE%AE/">
+                <a href="/2020/11/05/vulbhub-DC2/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="单臂路由和ICMP协议">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="vulbhub-DC2">
                         
-                        <span class="card-title">单臂路由和ICMP协议</span>
+                        <span class="card-title">vulbhub-DC2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -643,21 +681,28 @@
                         
                             
 
-单臂路由我们在设置好vlan之后如果连接同一台交换机的PC在不同的vlan之中是没有办法进行通信的（相当于处于不同的vlan的PC是处于不同的局域网），这样一来我就需要用到单臂路由（虽然现在被淘汰了），单臂路由的具体实现是在原本的路由器
+1.信息收集在布置好靶场之后我们利用相关工具进行一波内网扫描，我这里用的是自己找的扫描软件，可以推荐用nmap，
+
+在扫描出相应的IP地址之后直接访问发现访问不了，治理是由于我们本地的解析问题，需要我们对host文件进行更新，Windo
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-05
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            lemon-fan
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
+                                    web渗透
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -676,13 +721,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/18/MSF%E4%B8%AD%E7%9A%84%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D/">
+                <a href="/2020/10/27/vulnhub%E4%B8%AD%E7%9A%84wordpress%E9%9D%B6%E5%9C%BA/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="MSF中的永恒之蓝">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="vulnhub中的wordpress靶场">
                         
-                        <span class="card-title">MSF中的永恒之蓝</span>
+                        <span class="card-title">vulnhub中的wordpress靶场</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -691,17 +736,22 @@
                             
 
 
-永恒之蓝漏洞永恒之蓝漏洞是于2017年发布的漏洞，可以说是一个危害性很大的漏洞，不过在此漏洞发布后不久各大厂商都做出了相关的补丁，有兴趣的可以去360上查看补丁。而永恒之蓝漏洞利用的主要是SVB这个协议，而所利用的我们PC上的445端
+
+vulnhub的介绍最近刚开始学习web渗透，也搭建了一个vulnhub的靶场，在这里我介绍一下vulnhub靶场，这是一个公开的免费的web渗透靶场，我们在选好相关目标靶场之后下载靶场的相关压缩文件，解压后直接在虚拟机中打开就可以
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-27
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            lemon-fan
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
+                                    web渗透
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -709,8 +759,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web%E4%B8%AD%E7%9A%84%E6%B8%97%E9%80%8F/">
-                        <span class="chip bg-color">web中的渗透</span>
+                    <a href="/tags/web%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">web基础</span>
                     </a>
                     
                 </div>
