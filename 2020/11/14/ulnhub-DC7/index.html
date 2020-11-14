@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vulnhub中的wordpress靶场, C,Pyhton,Linux">
+    <meta name="keywords" content="vulnhub-DC7, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vulnhub中的wordpress靶场 | lemon-fan</title>
+    <title>vulnhub-DC7 | lemon-fan</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/14.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vulnhub中的wordpress靶场</h1>
+                    <h1 class="description center-align post-title">vulnhub-DC7</h1>
                 </div>
             </div>
         </div>
@@ -434,25 +434,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">web基础</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
-                                web渗透
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -461,21 +448,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-27
+                    2020-11-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-27
+                    2020-11-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    578
+                    713
                 </div>
                 
 
@@ -498,17 +485,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <a id="more"></a>
-
-
-
-<h1 id="vulnhub的介绍"><a href="#vulnhub的介绍" class="headerlink" title="vulnhub的介绍"></a>vulnhub的介绍</h1><p>最近刚开始学习web渗透，也搭建了一个vulnhub的靶场，在这里我介绍一下vulnhub靶场，这是一个公开的免费的web渗透靶场，我们在选好相关目标靶场之后下载靶场的相关压缩文件，解压后直接在虚拟机中打开就可以了（你所下载的压缩包其实就是一个虚拟机文件的压缩版），然后在开机之后就可以开始你的渗透之旅了。</p>
-<h1 id="web渗透的简单了解（本人的见解欢迎指正）"><a href="#web渗透的简单了解（本人的见解欢迎指正）" class="headerlink" title="web渗透的简单了解（本人的见解欢迎指正）"></a>web渗透的简单了解（本人的见解欢迎指正）</h1><p>以我现在了解的了解web渗透分大体分为：信息收集，漏洞发现，漏洞利用拿到shell（在我看来到此为前渗透阶段），拿到shell之后利用漏洞进行提权，执行自己的目的操作（比如打爆服务器的数据），留下后门，删库跑路（至此为后渗透阶段）。</p>
-<p>反弹shell：就是控制端监听在某TCP/UDP端口，被控端发起请求到该端口，并将其命令行的输入输出转到控制端，而我们常见的web中利用反弹shell拿到shell的原理就是利用各种软件的漏洞执行相关命令让目标PC主动连接我们的攻击机，从而完成前渗透阶段的最后一步。</p>
-<h1 id="vulnhub中的woerdpress靶场（DC6）"><a href="#vulnhub中的woerdpress靶场（DC6）" class="headerlink" title="vulnhub中的woerdpress靶场（DC6）"></a>vulnhub中的woerdpress靶场（DC6）</h1><p>此靶场主要利用wordpress的Plainview Activity Monitor插件的漏洞来拿到shell，原理是可以从这个插件中传输数据中做手脚从而能够远程执行恶意代码，wordpress官方的公告为：<a href="http://blog.nsfocus.net/cve-2018-15877/" target="_blank" rel="noopener">http://blog.nsfocus.net/cve-2018-15877/</a> ，而我们的攻击机kali中的msf就具有对此插件的相关攻击模块。</p>
-<p>我们进行渗透过程中会用到WPScan这个工具，此工具为Kali自带的一款漏洞扫描工具，它采用Ruby编写，能够扫描WordPress网站中的多种安全漏洞，它不仅能够扫描类似robots.txt这样的敏感文件，而且还能够检测当前已启用的插件和其他功能。</p>
-<p>靶场渗透提示：wordpress的默认后台登录页面为wp-login.php。</p>
-<p>具体渗透操作请参考大佬博客：<a href="https://www.cnblogs.com/-chenxs/p/12060347.html" target="_blank" rel="noopener">https://www.cnblogs.com/-chenxs/p/12060347.html</a> 或者 <a href="https://www.jianshu.com/p/fbb357ebf1cf" target="_blank" rel="noopener">https://www.jianshu.com/p/fbb357ebf1cf</a></p>
+                <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>在配置好vulnhub-DC7之后我们在他的虚拟机界面能够直接看到他的IP地址，然后根据我们之前的套路，直接用IP地址访问，可你看到80界面。同时也顺便扫一下靶机的端口，可以看到，开启了22端口，说明我们会拿到某些用户的账号和密码。</p>
+<p><a href="https://imgchr.com/i/DPMnIS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMnIS.png" alt></a><br>我根据网上看到wp，发现关键在于@DC7USER，也就是我们在靶机80页面的页脚，百度搜一手，发现是个github用户。<br><a href="https://imgchr.com/i/DPMQ2j" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMQ2j.png" alt></a><br><a href="https://imgchr.com/i/DPMtaT" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMtaT.png" alt></a></p>
+<h1 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h1><p>用户的公共仓库中有网站的部分源码，下载后在config.php中发现了用户名和密码，利用ssh连接一手。<br><a href="https://imgchr.com/i/DPMNIU" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMNIU.png" alt></a><br><a href="https://imgchr.com/i/DPMaiF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMaiF.png" alt></a><br>cat一下该用户目录下的两个文件，发现有一个打不开，另外一个是一个邮件，而且，我们在这个邮件的前半部分发现了一个路径，<br><a href="https://imgchr.com/i/DPMwRJ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMwRJ.png" alt></a><br>cd一手发现没有什么提示，<br><a href="https://imgchr.com/i/DPMxQs" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMxQs.png" alt></a><br>再查看一下该文件的权限，发现一个奇怪的东西，这个文件root具有最高权限，但是它所属的是www-data组，也就是说这可能会是我们的一个提权的点。</p>
+<p>那么接下来就需要我们想办法去将自己变为www-data，然而到这里我是真的感觉抓瞎，在看了别人的wp之后发现drush是drupal站点专门用来管理自己网站的shell，也就是说我们可以在网站的根目录下修改网站用户的密码，然后cd到网站根目录下操作<br><a href="https://imgchr.com/i/DPQCwV" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQCwV.png" alt></a><br>我们在修改过admin的密码之后从靶机的80页面登录，然后进入后台。<br><a href="https://imgchr.com/i/DPQeyR" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQeyR.png" alt></a><br>这时候我感觉又抓瞎了，然后就双快乐一下别人的wp，发现这个网站本身是不支持PHP语言的，但是drupal有支持PHP的插件，所以我们可以到下面的地址中下载压缩包<br><a href="https://www.drupal.org/project/php" target="_blank" rel="noopener">https://www.drupal.org/project/php</a></p>
+<p>在下载完成之后去靶机80页面的后台进行如下操作<br><a href="https://imgchr.com/i/DPQtOI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQtOI.png" alt></a><br><a href="https://imgchr.com/i/DPQa0P" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQa0P.png" alt></a><br><a href="https://imgchr.com/i/DPQBtS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQBtS.png" alt></a><br><a href="https://imgchr.com/i/DPQDfg" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQDfg.png" alt></a><br><a href="https://imgchr.com/i/DPQspQ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQspQ.png" alt></a><br>然后install</p>
+<h1 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h1><p>然后我们就可以使用PHP语言类，然后进入网站后台，编辑一下主页面，加入一句话木马<br><a href="https://imgchr.com/i/DPQvtO" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQvtO.png" alt></a><br>蚁剑连接，反弹shell，实现交互式shell</p>
+<p><a href="https://imgchr.com/i/DPllBq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPllBq.png" alt></a><br><a href="https://imgchr.com/i/DPltCF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPltCF.png" alt></a></p>
+<p>刚才我们发现了/opt/scripts/backups.sh这个文件是一个提权的点，所以我叒看了别人的wp，发现这确实是一个提权的点，原理是，这是原本是一个备份文件，而root用户每隔一段时间就会指向这个文件里边的命令，所以我们一www-data用户向这个文件中写入反弹shell的命令，kali中监听端口，而我们只要等待root用户下一次执行这个文件就可以拿到root用户的权限了。<br><a href="https://imgchr.com/i/DPlhDI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPlhDI.png" alt></a><br><a href="https://imgchr.com/i/DPl4bt" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPl4bt.png" alt></a></p>
 
             </div>
             <hr/>
@@ -534,7 +518,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/10/27/vulnhub%E4%B8%AD%E7%9A%84wordpress%E9%9D%B6%E5%9C%BA/">http://lemon-fan.github.io/2020/10/27/vulnhub%E4%B8%AD%E7%9A%84wordpress%E9%9D%B6%E5%9C%BA/</a>
+                    <a href="http://lemon-fan.github.io/2020/11/14/ulnhub-DC7/">http://lemon-fan.github.io/2020/11/14/ulnhub-DC7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -571,11 +555,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">web基础</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -636,53 +616,39 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/05/vulbhub-DC2/">
+                <a href="/2020/11/14/ulnhub-DC7/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="vulbhub-DC2">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/9.jpg" class="responsive-img" alt="vulnhub-DC7">
                         
-                        <span class="card-title">vulbhub-DC2</span>
+                        <span class="card-title">vulnhub-DC7</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-
-1.信息收集在布置好靶场之后我们利用相关工具进行一波内网扫描，我这里用的是自己找的扫描软件，可以推荐用nmap，
-
-在扫描出相应的IP地址之后直接访问发现访问不了，治理是由于我们本地的解析问题，需要我们对host文件进行更新，Windo
+                            信息收集在配置好vulnhub-DC7之后我们在他的虚拟机界面能够直接看到他的IP地址，然后根据我们之前的套路，直接用IP地址访问，可你看到80界面。同时也顺便扫一下靶机的端口，可以看到，开启了22端口，说明我们会拿到某些用户的账号和密码。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-14
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
-                                    web渗透
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lemon-fan
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">web基础</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -693,26 +659,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/18/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%E5%92%8CICMP%E5%8D%8F%E8%AE%AE/">
+                <a href="/2020/11/14/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="单臂路由和ICMP协议">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">单臂路由和ICMP协议</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-
-单臂路由我们在设置好vlan之后如果连接同一台交换机的PC在不同的vlan之中是没有办法进行通信的（相当于处于不同的vlan的PC是处于不同的局域网），这样一来我就需要用到单臂路由（虽然现在被淘汰了），单臂路由的具体实现是在原本的路由器
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-14
                             </span>
                         <span class="publish-author">
                             
@@ -721,14 +685,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">web基础</span>
-                    </a>
-                    
                 </div>
                 
             </div>
