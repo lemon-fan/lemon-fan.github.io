@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>vulnhub-Lampiao</title>
+      <link href="/2020/11/25/vulnhub-Lampiao/"/>
+      <url>/2020/11/25/vulnhub-Lampiao/</url>
+      
+        <content type="html"><![CDATA[<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>扫描靶机IP，以及靶机的端口，此靶场的开放端口会有点特殊，只看到了22端口和8端口，打开80端口，发现什么也没有，<br><img src="/2020/11/25/vulnhub-Lampiao/1.png" alt><br>觉得应该像之前的做过的靶场一样有端口我们没有扫描出来，所以我用nmap再次扫描发现了一个不一样的端口<br><img src="/2020/11/25/vulnhub-Lampiao/2.png" alt><br>打开1898界面，发现是个博客，利用dirb扫描一下博客，<br><img src="/2020/11/25/vulnhub-Lampiao/3.png" alt><br>发现了robots.txt这个敏感文件，访问一下，看看有没有什么能用信息，同时也看一下网站的具体信息，<br><img src="/2020/11/25/vulnhub-Lampiao/4.png" alt></p><h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>发现是drapul7版本的博客，我们在web页面没有什么能够利用的渗透点，索性就从系统入手，在klai中找一下能够利用的exp<br><img src="/2020/11/25/vulnhub-Lampiao/5.png" alt><br>我们利用18年这个攻击模块，（由于7版本是比较新的博客版本，之前的漏洞可能已经打好了补丁），设置好RHOST和RPORT，然后exploit，拿到shell，然后利用python实现交互式shell。<br><img src="/2020/11/25/vulnhub-Lampiao/6.png" alt></p><h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>既然我们已经拿到了www-data用户的权限，那么我们接下来就是想着怎么去提权，利用uname -a的命令查看系统版本，<br><img src="/2020/11/25/vulnhub-Lampiao/7.png" alt><br>发现此版本为Ubuntu在16年8月的版本，所以我们难免会想到一个著名的Linux“老年”漏洞：脏牛。既然我们知道怎样去提权了，那么接下来就好办了，（再打这个靶场之前，我连脏牛是啥都不知道，草率了），所以我去看了别人的脏牛提权教程，发现此靶场利用的是40847.cpp，我们search一波就发现了<br><img src="/2020/11/25/vulnhub-Lampiao/8.png" alt><br>所以将exp上传到靶机上，我们先在kali上开启临时web服务，上传exp</p><pre class=" language-shell"><code class="language-shell">python -m SimpleHTTPServer   //kali开启临时web服务</code></pre><p><img src="/2020/11/25/vulnhub-Lampiao/9.png" alt><br><img src="/2020/11/25/vulnhub-Lampiao/10.png" alt></p><pre class=" language-shell"><code class="language-shell">g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow 40847.cpp -lutil                       //exp编译语句</code></pre><p>将exp上传到靶机上之后，由于是cpp文件比较特殊，编译的语句确实很长（我实在看不同编译的shell命令，还是太菜了），成功将exp编译为可执行的文件，然后执行文件，最后得到root权限，拿到了flag。<br><img src="/2020/11/25/vulnhub-Lampiao/11.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web渗透 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulnhub-potato(SunCSR)</title>
       <link href="/2020/11/21/vulnhub-potato-SunCSR/"/>
       <url>/2020/11/21/vulnhub-potato-SunCSR/</url>
