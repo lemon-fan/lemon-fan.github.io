@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>一些知识的积累</title>
+      <link href="/2020/11/27/%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%9A%84%E7%A7%AF%E7%B4%AF/"/>
+      <url>/2020/11/27/%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%9A%84%E7%A7%AF%E7%B4%AF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><p>我今天被博客cdn加速给疯狂军训，到最后我才发现，是我的博客用的cdn自身有问题，先在这里介绍一下我用的cdn：jsdelivr，是一个对部署在github上的博客有加速功能的cdn，但是，这个cdn你如果让他加速图片的话，例如：你的博客背景图片是在一个文件夹里，首先这个文件夹大小不能超过50MB，其次，你如果把你的波尔克背景图片删除一些，这个cdn网站不会把该删除的删除，就好比你的博客背景图片原本有名字为1-7的七张图片，后来你把第7张图片删除了，但是这个cdn上还会缓存有第七张图片，而且你还没办法删除，还占空间。（就是这个问题疯狂军训我）</p><p>一个hexo博客的插件：hexo-admin，便于书写和修改文章，此插件感觉只是部署到自己本地最好，毕竟是有风险的，</p><pre class=" language-shell"><code class="language-shell"> npm install --save hexo-admin    //安装相关插件</code></pre><p>然后在git上hexo s将你的博客部署到本地，在打开localhost:4000/admin就可以看到这个插件的页面。其中deplay页面相当于一个上传页面，也就相当于我们之前上传博客时用到的hexo g -d 但是使用之前需要我们配置一下博客的根文件（_config.yml），向其中加上</p><pre class=" language-shell"><code class="language-shell">admin:  deployCommand: 'hexo-publish.bat'</code></pre><p>然后再在我们的博客文件中创建hexo-publish.bat文件，文件内容为：</p><pre class=" language-shell"><code class="language-shell">hexo clean && hexo g -d</code></pre><p>到此文件就配置完毕，但注意我们每次需要用到这个插件都要hexo s一下把博客先部署到本地。</p><h2 id="关于渗透"><a href="#关于渗透" class="headerlink" title="关于渗透"></a>关于渗透</h2><p>最近做了不少的vulnhub靶场例如DC1-9，bob，potato，Lampiao，还有刚做的m87，这些都是基本的靶场了，做了这么多，我也该总结一下了。</p><h3 id="关于信息渗透阶段"><a href="#关于信息渗透阶段" class="headerlink" title="关于信息渗透阶段"></a>关于信息渗透阶段</h3><p>一般来说，我们再打靶之前会先对靶机扫一下IP，然后扫一下端口，那这里我就分享一下几个nmap的命令：</p><pre><code>nmap   192.168.10.1/24     //扫描该网段的所有主机nmap   192.168.10.211      //扫描211的端口，这相当于一个初步探测nmap -sS -A 192.168.171.0/24   //对一个网段进行进一步的扫描</code></pre><p>我们得到靶机的IP和端口之后，基本上会看一下对应的端口都开了些什么服务，例如22端口的ssh服务，80的web服务，还有靶机其他端口开起的服务也会成为我们的渗透点，例如我刚做的m87靶场后渗透阶段的中心就在9090端口开启的web服务上。</p><h3 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h3><p>在弄清了靶机开启的服务之后，我们一般都会从靶机的80端口入手，在开始的阶段我们基本上都会先去80端口看看有没有什么可以利用的东西，如果翻了翻还是没有就扫描一下网站的目录，在这里分享一个命令：</p><pre class=" language-shell"><code class="language-shell">dirb http://192.168.10.211     //扫描该网站的80端口下的目录</code></pre><p>我们在扫描过之后一般都会发现一些有用的界面，例如robots.txt，一些能够执行命令的界面，能够SQL注入的页面，能够文件包含的页面等等。然后利用这些或者反弹shell，或者SQL注入爆库，或者文件包含上传一句话木马等手段拿到一个权限较低的用户权限，这个过程比较考验我们的细心观察能力，同时也基本上是最难的一步。同样，这一步对于我们对工具的掌握能力有较高的要求，就像我打m87靶场的时候还得人工爆破，sqlmap还不会用（我是菜鸡）。</p><h3 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h3><p>我们在到了后渗透阶段的时候基本上就有着一个或大或小权限的用户，我们接下来考虑的就是怎么提升权限到root，一般来说我们会首先sudo -l一下看看当前用户的权限，看一下有没有能提权的点，如果有就会想办法去利用，没有的话可以从系统的角度下手，uname -a看看系统版本再到kali中找找看有没有对应的exp，其中最著名的莫过于脏牛提权了。如果以上两者都没有提权的点，那我们只能尝试从其他地方找找看有没有其他用户有关密码的提示，在得到其他用户权限后接着上一步走，有时候我们需要不止一次转换用户，甚至我们最初得到的用户权限连cd权限都有可能没有，这时候就需要我们利用自当前用户对于某个文件具有写的权限写一下!/bin/bash,来让自己的命令得到“释放”。不过，最基本的还是我们在得到在某些文件中具有root权限的用户时怎么去利用，就像DC-9中的我们得到了一个用户权限，此用户在一个python文件中具有root权限，具体为：向文件B中写入文件A，那么我们就可以伪造一个在/etc/passwd文件下和root用户一样格式的用户，写入到/etc/passwd中，然后切换用户完成提权。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总而言之我们遇到的多了，渐渐地就会懂得多了，不会再向刚学安全时候那样感觉无力了。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> web总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulnhub-Bob</title>
       <link href="/2020/11/27/vulnhub-Bob/"/>
       <url>/2020/11/27/vulnhub-Bob/</url>
