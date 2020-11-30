@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vulnhub-DC7, C,Pyhton,Linux">
+    <meta name="keywords" content="vulnhub-chili, C,Pyhton,Linux">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vulnhub-DC7 | lemon-fan</title>
+    <title>vulnhub-chili | lemon-fan</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/14.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/06.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/02.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vulnhub-DC7</h1>
+                    <h1 class="description center-align post-title">vulnhub-chili</h1>
                 </div>
             </div>
         </div>
@@ -434,25 +434,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">web基础</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
-                                web渗透
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -461,28 +448,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-14
+                    2020-11-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-14
+                    2020-11-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    713
+                    443
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -498,14 +485,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>在配置好vulnhub-DC7之后我们在他的虚拟机界面能够直接看到他的IP地址，然后根据我们之前的套路，直接用IP地址访问，可你看到80界面。同时也顺便扫一下靶机的端口，可以看到，开启了22端口，说明我们会拿到某些用户的账号和密码。</p>
-<p><a href="https://imgchr.com/i/DPMnIS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMnIS.png" alt></a><br>我根据网上看到wp，发现关键在于@DC7USER，也就是我们在靶机80页面的页脚，百度搜一手，发现是个github用户。<br><a href="https://imgchr.com/i/DPMQ2j" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMQ2j.png" alt></a><br><a href="https://imgchr.com/i/DPMtaT" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMtaT.png" alt></a></p>
-<h1 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h1><p>用户的公共仓库中有网站的部分源码，下载后在config.php中发现了用户名和密码，利用ssh连接一手。<br><a href="https://imgchr.com/i/DPMNIU" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMNIU.png" alt></a><br><a href="https://imgchr.com/i/DPMaiF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMaiF.png" alt></a><br>cat一下该用户目录下的两个文件，发现有一个打不开，另外一个是一个邮件，而且，我们在这个邮件的前半部分发现了一个路径，<br><a href="https://imgchr.com/i/DPMwRJ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMwRJ.png" alt></a><br>cd一手发现没有什么提示，<br><a href="https://imgchr.com/i/DPMxQs" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPMxQs.png" alt></a><br>再查看一下该文件的权限，发现一个奇怪的东西，这个文件root具有最高权限，但是它所属的是www-data组，也就是说这可能会是我们的一个提权的点。</p>
-<p>那么接下来就需要我们想办法去将自己变为www-data，然而到这里我是真的感觉抓瞎，在看了别人的wp之后发现drush是drupal站点专门用来管理自己网站的shell，也就是说我们可以在网站的根目录下修改网站用户的密码，然后cd到网站根目录下操作<br><a href="https://imgchr.com/i/DPQCwV" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQCwV.png" alt></a><br>我们在修改过admin的密码之后从靶机的80页面登录，然后进入后台。<br><a href="https://imgchr.com/i/DPQeyR" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQeyR.png" alt></a><br>这时候我感觉又抓瞎了，然后就双快乐一下别人的wp，发现这个网站本身是不支持PHP语言的，但是drupal有支持PHP的插件，所以我们可以到下面的地址中下载压缩包<br><a href="https://www.drupal.org/project/php" target="_blank" rel="noopener">https://www.drupal.org/project/php</a></p>
-<p>在下载完成之后去靶机80页面的后台进行如下操作<br><a href="https://imgchr.com/i/DPQtOI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQtOI.png" alt></a><br><a href="https://imgchr.com/i/DPQa0P" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQa0P.png" alt></a><br><a href="https://imgchr.com/i/DPQBtS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQBtS.png" alt></a><br><a href="https://imgchr.com/i/DPQDfg" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQDfg.png" alt></a><br><a href="https://imgchr.com/i/DPQspQ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQspQ.png" alt></a><br>然后install</p>
-<h1 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h1><p>然后我们就可以使用PHP语言类，然后进入网站后台，编辑一下主页面，加入一句话木马<br><a href="https://imgchr.com/i/DPQvtO" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPQvtO.png" alt></a><br>蚁剑连接，反弹shell，实现交互式shell</p>
-<p><a href="https://imgchr.com/i/DPllBq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPllBq.png" alt></a><br><a href="https://imgchr.com/i/DPltCF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPltCF.png" alt></a></p>
-<p>刚才我们发现了/opt/scripts/backups.sh这个文件是一个提权的点，所以我叒看了别人的wp，发现这确实是一个提权的点，原理是，这是原本是一个备份文件，而root用户每隔一段时间就会指向这个文件里边的命令，所以我们一www-data用户向这个文件中写入反弹shell的命令，kali中监听端口，而我们只要等待root用户下一次执行这个文件就可以拿到root用户的权限了。<br><a href="https://imgchr.com/i/DPlhDI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPlhDI.png" alt></a><br><a href="https://imgchr.com/i/DPl4bt" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/14/DPl4bt.png" alt></a></p>
+                <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>扫描目标靶机端口，发现只开了80和21端口，21端口开的还是ftp服务。<br><img src="/2020/11/30/vulnhub-chili/1.png" alt></p>
+<h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>访问80端口，除了一个辣椒页面啥也没有，<br><img src="/2020/11/30/vulnhub-chili/2.png" alt><br>于是只能访问21端口看看ftp是不是可以匿名访问的，可惜不能，账号和密码，我们此时都不知道，我们在下载靶机的时候，作者给了我们一些提示，让我们试试靶场名字也就是chili，没有密码只能爆破，跑九头蛇，找到了密码，a1b2c3d4</p>
+<pre class=" language-shell"><code class="language-shell">ftp -nv 192.168.10.74    //linux ftp连接命令
+put 12138.php /var/www/html/.nano/12138.php    //将你本机现在所在路径中的12138.PHP文件上传到目标机器/var/www/html/.nano路径下</code></pre>
+<p><img src="/2020/11/30/vulnhub-chili/3.png" alt><br><img src="/2020/11/30/vulnhub-chili/4.png" alt><br>登录上ftp之后随便翻翻也没有什么，想着从系统版本漏洞入手，uname-a一看比我的kali版本都新，告辞。再用sudo命令，发现被禁用了，再换个命令查看权限，发现也没有什么特殊的权限，心态炸裂，只能到处ls -la看看有没有什么隐藏的文件说不定我们就会有较高的权限，<br><img src="/2020/11/30/vulnhub-chili/5.png" alt><br>果然，我们在/var/www/htnl中发现了隐藏文件，而且我们还有很高的权限，和root一样，那么就可以向里边上传PHP版本的反弹shell脚本，浏览器访问之后，就拿到了www-data用户的shell。<br><img src="/2020/11/30/vulnhub-chili/6.png" alt><br><img src="/2020/11/30/vulnhub-chili/7.png" alt></p>
+<h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>之前我们在.nano文件中具有和root一样的权限，那么我们完全可以在此文件中利用我们的权限向/etc/passwd中写入一个root组的用户，然后转换用户就提权了，没想到吧，这个靶场提权就是这么简单。<br><img src="/2020/11/30/vulnhub-chili/8.png" alt><br><img src="/2020/11/30/vulnhub-chili/9.png" alt></p>
 
             </div>
             <hr/>
@@ -531,7 +516,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://lemon-fan.github.io/2020/11/14/vulnhub-DC7/">http://lemon-fan.github.io/2020/11/14/vulnhub-DC7/</a>
+                    <a href="http://lemon-fan.github.io/2020/11/30/vulnhub-chili/">http://lemon-fan.github.io/2020/11/30/vulnhub-chili/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -568,11 +553,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">web基础</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -633,50 +614,40 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/17/vulnhub-DC8/">
+                <a href="/2020/11/30/vulnhub-chili/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/05.jpg" class="responsive-img" alt="vulnhub-DC8">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/02.jpg" class="responsive-img" alt="vulnhub-chili">
                         
-                        <span class="card-title">vulnhub-DC8</span>
+                        <span class="card-title">vulnhub-chili</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            信息收集老规矩，扫描一波IP地址，发现靶机的IP和开放端口，靶机开放了80和22端口，推测我们又要从80端口开始渗透
-前渗透阶段进入靶机的80页面之后发现是一个博客页面，随便点点，发现URL会发生变化，看着挺像做SQL注入时的靶场，所以，测
+                            信息收集扫描目标靶机端口，发现只开了80和21端口，21端口开的还是ftp服务。
+前渗透阶段访问80端口，除了一个辣椒页面啥也没有，于是只能访问21端口看看ftp是不是可以匿名访问的，可惜不能，账号和密码，我们此时都不知道，我们在下载靶机的
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
-                                    web渗透
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lemon-fan
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">web基础</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -687,37 +658,29 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/12/vulnhub-DC4/">
+                <a href="/2020/11/27/%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%9A%84%E7%A7%AF%E7%B4%AF/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/02.jpg" class="responsive-img" alt="vulnhub-DC4">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/05.jpg" class="responsive-img" alt="一些知识的积累">
                         
-                        <span class="card-title">vulnhub-DC4</span>
+                        <span class="card-title">一些知识的积累</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-
-信息收集配好vulnhub-DC4的靶场之后，开始扫描同网段存活主机，发现靶机开起来80和22端口，猜测我们接下来可能会用到爆破拿到相关的用户名和密码。
-
-前渗透阶段然后访问靶机的80页面，发现是个登录框，一开始我认为是存在SQL注入漏
+                            关于博客我今天被博客cdn加速给疯狂军训，到最后我才发现，是我的博客用的cdn自身有问题，先在这里介绍一下我用的cdn：jsdelivr，是一个对部署在github上的博客有加速功能的cdn，但是，这个cdn你如果让他加速图片的话，例如：你
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-27
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/web%E6%B8%97%E9%80%8F/" class="post-category">
-                                    web渗透
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            lemon-fan
                             
                         </span>
                     </div>
@@ -725,8 +688,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">web基础</span>
+                    <a href="/tags/web%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">web总结</span>
                     </a>
                     
                 </div>
