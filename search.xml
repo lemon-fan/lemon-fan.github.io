@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>普通的docker提权</title>
+      <link href="/2020/12/19/%E6%99%AE%E9%80%9A%E7%9A%84docker%E6%8F%90%E6%9D%83/"/>
+      <url>/2020/12/19/%E6%99%AE%E9%80%9A%E7%9A%84docker%E6%8F%90%E6%9D%83/</url>
+      
+        <content type="html"><![CDATA[<p>简述一下docker和虚拟机的区别，docker利用的是你自己本身的PC的内核，而虚拟机则会完全虚拟出一个类真实环境，它会完全虚拟出一个PC该有内核，操作系统等，也就是说你的虚拟机如果没有第三方媒介的话，与你的PC可以说是两个独立的个体。而docker则是通过拉取镜像仓库的镜像来实现功能，docker会与你的本机有着一定程度上的联系，docker所利用的内核等完全是依赖你自己的本机，同时也不需要第三方媒介来实现与物理机的交互。</p><p>docker由它本身的特点能够实现虚拟机的一些功能，但又不会占用特别大的内存，有点类似Linux版的虚拟机，但由于它本身是从你PC的操作系统发展而来，自然会有一些和虚拟机不同的地方了</p><p>docker再创造的时候会生成一个docker组，同时也会在docker内部生成一个docker的管理员用户，一般默认都是root。docker也会有很多命令，其中-v 选项也就是–version会将我们PC上的文件映射到docker内部，这样就给了我们可以提权的点，我们可以从docker镜像仓库拉取一个镜像然后将本地的文件映射进入docker中，然后我们利用我们自己在docker内部root权限，将映射进来的/etc/passwd文件添加一个具有root权限的用户，于是有趣的就来了，我们的PC会同步生成一个同样的用户，然后su就完成了提权。</p><p>接下来附加docker提权的一个命令</p><pre class=" language-shell"><code class="language-shell">docker run -v /:/mnt  -it alpine </code></pre><p>此命令的解释为从奖项仓库拉取alpine镜像启动docker利用version选项（-v）将本地的/文件映射到mnt文件中，并以i和t为参数进入。这样我们就可以提权了</p><p><img src="/2020/12/19/%E6%99%AE%E9%80%9A%E7%9A%84docker%E6%8F%90%E6%9D%83/1.png" alt><br><img src="/2020/12/19/%E6%99%AE%E9%80%9A%E7%9A%84docker%E6%8F%90%E6%9D%83/2.png" alt></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web渗透 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vulnhub-chili</title>
       <link href="/2020/11/30/vulnhub-chili/"/>
       <url>/2020/11/30/vulnhub-chili/</url>
