@@ -455,21 +455,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-20
+                    2021-05-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.8k
+                    6.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    25 分
                 </div>
                 
 
@@ -650,23 +650,10 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
 <p>字符串拼接</p>
 <pre class=" language-go"><code class="language-go">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>strings<span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span>ss<span class="token punctuation">,</span><span class="token string">"+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>         将ss中的字符串用<span class="token operator">+</span>好进行拼接</code></pre>
 <h2 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if else 语句"></a>if else 语句</h2><p>Go语言中有着这样的if语句同c语言不同</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">if</span> age<span class="token operator">:=</span><span class="token number">19</span><span class="token punctuation">;</span> age<span class="token operator">></span><span class="token number">18</span><span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"lsp"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"xxs"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>                             以上语句中同c语言不同的是Go语言可以在<span class="token keyword">if</span>后临时进行变量的声明<span class="token punctuation">,</span>但仅限于这个<span class="token keyword">if</span>语句（此时age变量的作用域仅在<span class="token keyword">if</span>语句这个作用域中）</code></pre>
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span>
-<span class="token keyword">for</span> <span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>                第一种<span class="token keyword">for</span>循环，省略了初始语句</code></pre>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span>
-<span class="token keyword">for</span> i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-    i<span class="token operator">++</span>
-<span class="token punctuation">}</span>                第二种<span class="token keyword">for</span>循环将结束语句移至循环体内部</code></pre>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">for</span><span class="token punctuation">{</span>
-    语句
-<span class="token punctuation">}</span>      死循环可以通过<span class="token keyword">break</span>等退出循环</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">if</span> age<span class="token operator">:=</span><span class="token number">19</span><span class="token punctuation">;</span> age<span class="token operator">></span><span class="token number">18</span><span class="token punctuation">{</span>    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"lsp"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"xxs"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>                             以上语句中同c语言不同的是Go语言可以在<span class="token keyword">if</span>后临时进行变量的声明<span class="token punctuation">,</span>但仅限于这个<span class="token keyword">if</span>语句（此时age变量的作用域仅在<span class="token keyword">if</span>语句这个作用域中）</code></pre>
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> i<span class="token operator">=</span>0for <span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">{</span>    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">}</span>                第一种<span class="token keyword">for</span>循环，省略了初始语句</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> i<span class="token operator">=</span>0for i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">{</span>    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>    i<span class="token operator">++</span><span class="token punctuation">}</span>                第二种<span class="token keyword">for</span>循环将结束语句移至循环体内部</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">for</span><span class="token punctuation">{</span>    语句<span class="token punctuation">}</span>      死循环可以通过<span class="token keyword">break</span>等退出循环</code></pre>
 <pre class=" language-go"><code class="language-go">s<span class="token operator">:=</span> <span class="token string">"hello 你好"</span>
 <span class="token keyword">for</span> i<span class="token punctuation">,</span>v<span class="token operator">:=</span><span class="token keyword">range</span> s<span class="token punctuation">{</span>
     fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%d %c\n"</span><span class="token punctuation">,</span>i<span class="token punctuation">,</span>v<span class="token punctuation">)</span>
@@ -858,15 +845,9 @@ s1 <span class="token operator">=</span><span class="token function">make</span>
 <h3 id="参数和返回值的多样性"><a href="#参数和返回值的多样性" class="headerlink" title="参数和返回值的多样性"></a>参数和返回值的多样性</h3><pre class=" language-go"><code class="language-go">fmt <span class="token function">s1</span> <span class="token punctuation">(</span>x <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     函数体
 <span class="token punctuation">}</span>                                    定义了一个参数为x且x的类型为返回值为<span class="token builtin">int</span>类型的函数的函数</code></pre>
-<pre class=" language-go"><code class="language-go">fmt <span class="token function">s2</span><span class="token punctuation">(</span>x <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    函数体
-<span class="token punctuation">}</span>                                    定义了一个参数为x且x的类型为返回值为<span class="token builtin">int</span>类型的函数，函数本身返回值为函数的函数</code></pre>
+<pre class=" language-go"><code class="language-go">fmt <span class="token function">s2</span><span class="token punctuation">(</span>x <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    函数体<span class="token punctuation">}</span>                                    定义了一个参数为x且x的类型为返回值为<span class="token builtin">int</span>类型的函数，函数本身返回值为函数的函数</code></pre>
 <h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>语法为：</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> f<span class="token operator">=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>                                  定义了一个匿名函数，并将其返回值赋值给f变量，此语法可以用到全局性的函数
-如果想要调用此函数语法为：
-<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span>                           参数传递</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> f<span class="token operator">=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span><span class="token punctuation">}</span>                                  定义了一个匿名函数，并将其返回值赋值给f变量，此语法可以用到全局性的函数如果想要调用此函数语法为：<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span>                           参数传递</code></pre>
 <p>如果想要在一个函数中嵌套一个函数则需要用到匿名函数，语法为：</p>
 <pre class=" language-go"><code class="language-go">fmt <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     f1 <span class="token operator">:=</span><span class="token keyword">func</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -900,11 +881,7 @@ s1 <span class="token operator">=</span><span class="token function">make</span>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> mystring <span class="token builtin">string</span>              定义一个新的类型名叫mystring，实际上为<span class="token builtin">string</span>类型</code></pre>
 <p>类型别名：</p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> m <span class="token operator">=</span> <span class="token builtin">int</span>                      想要声明某个变量为<span class="token builtin">int</span>类型，也可以将声明语句定义为：<span class="token keyword">var</span> w y 声明一个<span class="token builtin">int</span>类型的名叫w的变量，相当于给<span class="token builtin">int</span>起了个小名，但类型别名仅能生效于代码编译前</code></pre>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>
-    age <span class="token builtin">int</span>
-    sex <span class="token builtin">string</span>
-    name <span class="token builtin">string</span>
-<span class="token punctuation">}</span>                                 定义一个新的类型名为person根本的类型为<span class="token keyword">struct</span>类型也就是结构体类型</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>    age <span class="token builtin">int</span>    sex <span class="token builtin">string</span>    name <span class="token builtin">string</span><span class="token punctuation">}</span>                                 定义一个新的类型名为person根本的类型为<span class="token keyword">struct</span>类型也就是结构体类型</code></pre>
 <p>Go语言中对于一个结构体中的变量名的调用语法为：</p>
 <pre class=" language-go"><code class="language-go">person<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">"wdnmd"</span>               将wdnmd赋值给person这个结构体中的name变量</code></pre>
 <p>总体的语法同c语言相差不大</p>
@@ -931,10 +908,220 @@ o语言会自动帮我们转义为<span class="token punctuation">(</span><span 
     <span class="token string">"18"</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span></code></pre>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>语法为：</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token punctuation">(</span>p person<span class="token punctuation">)</span> <span class="token function">people</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s:wdnmd"</span><span class="token punctuation">,</span> p<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token punctuation">(</span>p person<span class="token punctuation">)</span> <span class="token function">people</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s:wdnmd"</span><span class="token punctuation">,</span> p<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre>
+<p>方法是作用于特定类型的函数，在以上实例的(p person)中的person表示能够调用当前方法的类型为person类型，p表示一个形参，也就是我们调用person类型时所赋值的变量。</p>
+<h3 id="结构体的嵌套"><a href="#结构体的嵌套" class="headerlink" title="结构体的嵌套"></a>结构体的嵌套</h3><p>我们在使用多个结构体时，会对同一个或者多个变量进行了多次的声明，这时我们可以使用结构体的嵌套，来进行一次声明，多次使用</p>
+<p>语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+    age <span class="token builtin">int</span>
+    addr address
+<span class="token punctuation">}</span>                        定义一个person的结构体<span class="token punctuation">,</span>调用了address的类型
+
+<span class="token keyword">type</span> company <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+    add address
+<span class="token punctuation">}</span>                        定义了一个company的结构体，调用了address的类型
+
+<span class="token keyword">type</span> address <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    province <span class="token builtin">string</span>
+    city    <span class="token builtin">string</span>
+<span class="token punctuation">}</span>                       定义了一个address的结构体，用于嵌套使用
+
+
+fmt<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    p1 <span class="token operator">:=</span> person<span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span><span class="token string">"wdnmd"</span><span class="token punctuation">,</span>
+        age<span class="token punctuation">:</span><span class="token string">"18"</span><span class="token punctuation">,</span>
+        addr<span class="token punctuation">{</span>
+            province<span class="token punctuation">:</span><span class="token string">"上海"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span>addr<span class="token punctuation">.</span>province<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>                       定义了一个p1的变量，类型为person类型，其中调用了addr的结构体嵌套</code></pre>
+<h4 id="匿名嵌套结构体"><a href="#匿名嵌套结构体" class="headerlink" title="匿名嵌套结构体"></a>匿名嵌套结构体</h4><p>语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+    age <span class="token builtin">int</span>
+    address
+<span class="token punctuation">}</span>                        定义一个person的结构体<span class="token punctuation">,</span>调用了address的类型<span class="token punctuation">,</span>其中address类型并没有用变量声明
+
+<span class="token keyword">type</span> company <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+    address
+<span class="token punctuation">}</span>                        定义了一个company的结构体，调用了address的类型<span class="token punctuation">,</span>其中address类型并没有用变量声明
+
+<span class="token keyword">type</span> address <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    province <span class="token builtin">string</span>
+    city    <span class="token builtin">string</span>
+<span class="token punctuation">}</span>                       定义了一个address的结构体，用于嵌套使用
+
+
+fmt<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    p1 <span class="token operator">:=</span> person<span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span><span class="token string">"wdnmd"</span><span class="token punctuation">,</span>
+        age<span class="token punctuation">:</span><span class="token string">"18"</span><span class="token punctuation">,</span>
+        address<span class="token punctuation">{</span>
+            province<span class="token punctuation">:</span><span class="token string">"上海"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span>province<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>                       定义了一个p1的变量，类型为person类型，其中调用了addr的结构体嵌套<span class="token punctuation">,</span>可以直接利用语法p1<span class="token punctuation">.</span>province来调用province的值</code></pre>
+<h3 id="结构体中的类似继承"><a href="#结构体中的类似继承" class="headerlink" title="结构体中的类似继承"></a>结构体中的类似继承</h3><p>语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    age <span class="token builtin">int</span>
+    name <span class="token builtin">string</span>
+    <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> addr <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    province <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+此时person类型中已经具有了addr类型，如果addr类型具有方法函数的话，person中的函数也能够调用addr中的方法函数</code></pre>
+<h3 id="结构体序列化与反序列化"><a href="#结构体序列化与反序列化" class="headerlink" title="结构体序列化与反序列化"></a>结构体序列化与反序列化</h3><p>go语言中存在一个名为encoding/json的包能够将结构体中的内容转义为json形式的字符串具体语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span><span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"encoding/json"</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+    age <span class="token builtin">int</span>
+<span class="token punctuation">}</span> <span class="token comment" spellcheck="true">//创建一个person类型的结构体</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    p1<span class="token operator">:=</span> person<span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span><span class="token string">"wdnmd"</span><span class="token punctuation">,</span>
+        age<span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">//创建一个名为p1的person类型的变量</span>
+    b<span class="token punctuation">,</span>err<span class="token operator">:=</span>json<span class="token punctuation">.</span><span class="token function">Marshal</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//调用json包中的Marshal函数对变量p1进行编码并将两个返回值分别赋值给b和err，其中err为错误判断的返回值</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">//错误判断</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//将b进行强制转换为字符串类型并打印</span>
 <span class="token punctuation">}</span></code></pre>
-<p>方法是作用于特定类型的函数，在以上实例的(p person)中的person表示能够调用当前方法的类型为person类型，p表示一个形参，也就是我们调用person类型时所赋值的变量</p>
+<p>在上述的示例中，我们到最后只会得到一个{}的结果，或者在我们编译前会在Marshal函数调用p1时提示：struct doesn’t have any exported fields, nor custom marshaling (SA9005)意思是没有导出任何字段，出现这样的错误原因是，Go语言中如果想要让另一个包调用当前包中类型为结构体中已定义的变量类型（类似于上边示例中的name和age两个在结构体中声明过的），就需要将此变量的首字母大写表示此类型相对于当前包来说是公开的，也就说我们在其他包中可以调用此类型的变量中公开的类型，在上边示例中我们只需要把name和age的首字母大写就可以得到结果。</p>
+<p>上实例代码逻辑的分析：</p>
+<p>定义一个person类型，在main函数中定义了一个person类型的变量p1并对其进行了初始化，然后调用json包中的Marshal函数将p1作为参数传入，会得到两个返回值一个为转义后的字符串，一个为报错判断，接下来用一个if语句进行报错判断，最后将b转换类型为string类型然后打印。</p>
+<p>在上边的代码中如果name和age的首字母没有大写那么就表示在当前的包中person类型中的name和age是不公开的，由于不公开我们传入Marshal函数中的值相当于是空，所以返回值也为空，也就导致了最后打印的结果为{}，如果将其大写那么表示当前代码中person类型中的name和age对于其他包来说是公开的，是可以被其他包调用的，所以我们此时传入了我们预期的值，最后得到了预期的效果。</p>
+<p>如果我们想要让name和age对json这个包公开的为name而不是Name的话具体语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span><span class="token punctuation">{</span>
+    name <span class="token builtin">string</span> <span class="token string">`json:"name" ,db:"name"`</span>  <span class="token comment" spellcheck="true">//表示如果json或者db包想要调用Name用name代替Name</span>
+    age <span class="token builtin">int</span> <span class="token string">`json:age ,db:age`</span>
+<span class="token punctuation">}</span></code></pre>
+<p>如果我们想要对一个json格式的编码进行反序列化语法为：</p>
+<pre class=" language-go"><code class="language-go">str <span class="token operator">:=</span> <span class="token string">`{"name":"wdnmd","age":18}`</span>
+<span class="token keyword">var</span> p2 person
+json<span class="token punctuation">.</span><span class="token function">Unmarshal</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>p2<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span></code></pre>
+<p>以上示例中Unmarshal函数用法为将str变量进行强制转换然后将转换后的值，传给p2，而传指针是为在Unmarshal函数中修改p2的值</p>
+<h3 id="结构体示例简单的学生信息管理系统"><a href="#结构体示例简单的学生信息管理系统" class="headerlink" title="结构体示例简单的学生信息管理系统"></a>结构体示例简单的学生信息管理系统</h3><p>main.go内容如下：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> smr studentMan
+
+<span class="token keyword">func</span> <span class="token function">menu</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"1.增加学生信息"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"2.查看所有学生信息"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"3.删除学生信息"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"4.修改学生信息"</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"你的选择："</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    smr <span class="token operator">=</span> studentMan<span class="token punctuation">{</span>
+        allstudent<span class="token punctuation">:</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int64</span><span class="token punctuation">]</span><span class="token operator">*</span>student<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        <span class="token function">menu</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">var</span> chioce <span class="token builtin">int</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Scanln</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>chioce<span class="token punctuation">)</span>
+        <span class="token keyword">switch</span> chioce <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            smr<span class="token punctuation">.</span><span class="token function">addstudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
+            smr<span class="token punctuation">.</span><span class="token function">showstudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span>
+            smr<span class="token punctuation">.</span><span class="token function">deletestudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">case</span> <span class="token number">4</span><span class="token punctuation">:</span>
+            smr<span class="token punctuation">.</span><span class="token function">editstudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span>
+            fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"请重新输入"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>student.go内容如下：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> student <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    id   <span class="token builtin">int64</span>
+    name <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> studentMan <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    allstudent <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">int64</span><span class="token punctuation">]</span><span class="token operator">*</span>student
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s studentMan<span class="token punctuation">)</span> <span class="token function">addstudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token punctuation">(</span>
+        Id   <span class="token builtin">int64</span>
+        name <span class="token builtin">string</span>
+    <span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入学号："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scanln</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>Id<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入姓名："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scanln</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span>
+    strnew <span class="token operator">:=</span> <span class="token function">newstudent</span><span class="token punctuation">(</span>Id<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+    smr<span class="token punctuation">.</span>allstudent<span class="token punctuation">[</span>Id<span class="token punctuation">]</span> <span class="token operator">=</span> strnew
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">newstudent</span><span class="token punctuation">(</span>id <span class="token builtin">int64</span><span class="token punctuation">,</span> name <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">*</span>student <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>student<span class="token punctuation">{</span>
+        id<span class="token punctuation">:</span>   id<span class="token punctuation">,</span>
+        name<span class="token punctuation">:</span> name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s studentMan<span class="token punctuation">)</span> <span class="token function">showstudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> s<span class="token punctuation">.</span>allstudent <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"学号：%d 姓名：%s\n"</span><span class="token punctuation">,</span> v<span class="token punctuation">.</span>id<span class="token punctuation">,</span> v<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s studentMan<span class="token punctuation">)</span> <span class="token function">deletestudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"输入删除学生学号"</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> card <span class="token builtin">int64</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"学号："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scanln</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>card<span class="token punctuation">)</span>
+    <span class="token function">delete</span><span class="token punctuation">(</span>smr<span class="token punctuation">.</span>allstudent<span class="token punctuation">,</span> card<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>s studentMan<span class="token punctuation">)</span> <span class="token function">editstudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token punctuation">(</span>
+        stuid <span class="token builtin">int64</span>
+        name  <span class="token builtin">string</span>
+    <span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入需要修改的学生学号："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scanln</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>stuid<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"学生姓名："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scanln</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span>
+    strnew <span class="token operator">:=</span> <span class="token function">newstudent</span><span class="token punctuation">(</span>stuid<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+    smr<span class="token punctuation">.</span>allstudent<span class="token punctuation">[</span>stuid<span class="token punctuation">]</span> <span class="token operator">=</span> strnew
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口的定义：</p>
+<p>（本人暂时搞不懂）</p>
+<p>定义一个接口，语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> speaker <span class="token keyword">interface</span>    定义一个名为speaker的接口类型</code></pre>
+<p>定义一个传入参数为接口类型的函数：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">wdnmd</span><span class="token punctuation">(</span>x <span class="token keyword">interface</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    x<span class="token punctuation">.</span><span class="token function">speaker</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> 此函数传入的参数不会管你传入的参数是什么，唯一关心的是你传入的参数中是否含有speaker这个方法</code></pre>
+<p>如果我们定义了一个接口类型的变量s，定义一个person类型的变量a（person是我们自己定义的一个结构体类型），然后传入参数给此变量，然后我们会发现变量s的类型会变为person，这是因为接口为了实现对不同类型的传入变量进行统一进行方法的运算，在定义一个接口类型的变量时，变量的动态类型和动态值均为nil，在上述例子中变量s的初始类型和初始值均为nil，我们在传入变量a的同时也将变量a的类型传入了进去，让s变量的动态类型为person动态值为a的值</p>
 
             </div>
             <hr/>
@@ -1293,7 +1480,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">21.7k</span>&nbsp;字
+                class="white-color">23.5k</span>&nbsp;字
             
             
             
