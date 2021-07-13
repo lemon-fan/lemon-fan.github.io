@@ -455,21 +455,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-11
+                    2021-07-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.5k
+                    12.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    45 分
+                    49 分
                 </div>
                 
 
@@ -487,7 +487,7 @@
             <div id="articleContent">
                 <h1 id="Go语言"><a href="#Go语言" class="headerlink" title="Go语言"></a>Go语言</h1><p>Go语言类似于c语言一样是编译型的语言，编译过程为将认为可读懂的代码转换为01二进制送给机器进行编译</p>
 <p>对Go语言代码的基本认识</p>
-<p><img src="/2021/05/13/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/C:%5CUsers%5CWJDZ%5CDesktop%5CGo%5C1.png" alt="Go语言的基本"></p>
+<p><img src="/2021/05/13/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png" alt="Go语言的基本"></p>
 <h2 id="Go语言语法"><a href="#Go语言语法" class="headerlink" title="Go语言语法"></a>Go语言语法</h2><p>在命令行中对我们所写的Go语言代码进行编译为exe可执行文件：</p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">go</span> build          <span class="token comment" spellcheck="true">//将当前所写的代码编译为可执行的exe文件</span>
 <span class="token keyword">go</span> run            <span class="token comment" spellcheck="true">//类似于python脚本的执行方式执行当前Go语言代码</span>
@@ -1616,6 +1616,159 @@ x<span class="token operator">:=</span> <span class="token operator">&lt;-</span
     wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
     wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span></code></pre>
+<h3 id="channel中的select"><a href="#channel中的select" class="headerlink" title="channel中的select"></a>channel中的select</h3><p>具体的语句为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">select</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> 执行语句<span class="token punctuation">:</span>
+    <span class="token keyword">case</span> 执行语句<span class="token punctuation">:</span>
+<span class="token punctuation">}</span></code></pre>
+<p>例子为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> inc <span class="token keyword">chan</span> <span class="token builtin">int</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    inc <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> num <span class="token builtin">int</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        <span class="token keyword">select</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> num <span class="token operator">=</span> <span class="token operator">&lt;-</span>inc<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>从通道中读取值赋值给num
+            fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+        <span class="token keyword">case</span> inc <span class="token operator">&lt;-</span> i<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>向通道中写入i这个变量
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>以上例子中两个case语句在每一次执行时会随机选择一个执行，若有一个无法执行就执行另一个，若都无法执行，则会执行default语句（这里我没有写），以上例子的结果是随机的，如果把通道的make大小改为1则结果为：0 2 4 6 8。</p>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><p>我们在进行异步操作时，对同一个数据会出现两个子线程同时修改的情况，这样就需要利用互斥锁来进行对数据的加锁以便实现操作</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"sync"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+
+<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在以上的例子中，会出最后得到的结果不为20000，出现这样的原因为我们开了两个线程来对x实习操作，有时候会出现两个同时对它进行操作，如果想要避免这种情况则需要在每个线程对x进行操作的时候加上互斥锁。</p>
+<p>互斥锁的语法为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> lock sync<span class="token punctuation">.</span>Mutex  <span class="token comment" spellcheck="true">//定义一个全局的名为lock的互斥锁</span></code></pre>
+<p>如果将其用在以上的例子中代码为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"sync"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+
+<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+       lock<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+       x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+       lock<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>上边的互斥锁对于单一操作来说能够保证数据的正确性，如果们在这其中再加入读的操作，如果一个数据发生变化，则所有的读操作都要等待操作完成，所以为了提高效率，就有了读写锁，及读写分离。</p>
+<p>代码为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"sync"</span>
+    <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+<span class="token keyword">var</span> rw sync<span class="token punctuation">.</span>RWMutex  <span class="token comment" spellcheck="true">//定义一个读写锁</span>
+<span class="token comment" spellcheck="true">//读的函数</span>
+<span class="token keyword">func</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    rw<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//读锁</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    rw<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//写的函数</span>
+<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    rw<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//写锁</span>
+    x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+    rw<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        <span class="token keyword">go</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//睡眠1秒为了方便等待写操作的完成，若不等待则最后的结果会有一定的随机性</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        <span class="token keyword">go</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="sync补充"><a href="#sync补充" class="headerlink" title="sync补充"></a>sync补充</h2><h3 id="sync中的once"><a href="#sync中的once" class="headerlink" title="sync中的once"></a>sync中的once</h3><p>sync中的once表示某一操作只执行一次，once中含有一个结构体，结构体中含有锁和标志位，标志位表示此操作是否执行过，若为执行过则先改变标志位，在进行加锁然后执行后解锁。</p>
+<p>执行代码为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">//once传入的参数必须为没有参数和返回值的函数类型，所以有些时候需要用到闭包</span>
+once<span class="token punctuation">.</span><span class="token function">DO</span><span class="token punctuation">(</span>语句<span class="token punctuation">)</span></code></pre>
+<h3 id="sync中的sync-Map"><a href="#sync中的sync-Map" class="headerlink" title="sync中的sync.Map"></a>sync中的sync.Map</h3><p>在上边我们学过map这一类型，如果我们i用goroutine对map进行多线程赋值，go语言一般来说最多只支持20个，如果想要赋值更多则会报错，在实际中如果想要对map进行多个赋值则需要利用sync.Map进行实现。例子为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"strconv"</span>
+    <span class="token string">"sync"</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+<span class="token keyword">var</span> m sync<span class="token punctuation">.</span>Map<span class="token comment" spellcheck="true">//定义一个名为m的sync.map类型的变量</span>
+
+<span class="token keyword">func</span> <span class="token function">m_ap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            key <span class="token operator">:=</span> strconv<span class="token punctuation">.</span><span class="token function">Itoa</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">//利用sync.Map内置的函数对map进行键值对的赋值，且赋值只能用此函数</span>
+            m<span class="token punctuation">.</span><span class="token function">Store</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">//利用sync.Map中的内置函数Load对map及进行取值，且取值只能用此函数</span>
+            value<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> m<span class="token punctuation">.</span><span class="token function">Load</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+            fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+            wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">m_ap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -1972,7 +2125,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">30.6k</span>&nbsp;字
+                class="white-color">31.6k</span>&nbsp;字
             
             
             

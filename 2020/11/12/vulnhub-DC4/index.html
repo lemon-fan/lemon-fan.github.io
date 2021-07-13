@@ -468,7 +468,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-12
+                    2021-07-13
                 </div>
                 
 
@@ -501,39 +501,39 @@
                 <a id="more"></a>
 
 <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>配好vulnhub-DC4的靶场之后，开始扫描同网段存活主机，发现靶机开起来80和22端口，猜测我们接下来可能会用到爆破拿到相关的用户名和密码。</p>
-<p><a href="https://imgchr.com/i/BzH49f" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzH49f.png" alt></a></p>
+<p><img src="/vulnhub-DC4/1.png" alt></p>
 <h1 id="前渗透阶段"><a href="#前渗透阶段" class="headerlink" title="前渗透阶段"></a>前渗透阶段</h1><p>然后访问靶机的80页面，发现是个登录框，一开始我认为是存在SQL注入漏洞，后来在看了别热的wp之后发现是利用爆破得到登录的账号和密码（账号一般都为admin），所以，利用burp的爆破板块开始爆破，后来发现用到的字典是在太大，爆破的时间太长，所以只好看了别人的wp，得到admin的密码为happy。</p>
 <p>然后我们通过admin进入页面，发现是一个类似远程命令执行的页面，</p>
-<p><a href="https://imgchr.com/i/BzH538" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzH538.png" alt></a></p>
-<p><a href="https://imgchr.com/i/BzHojg" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzHojg.png" alt></a></p>
+<p><img src="/vulnhub-DC4/2.png" alt></p>
+<p><img src="/vulnhub-DC4/3.png" alt></p>
 <p>验证一波能否执行远程命令</p>
-<p><a href="https://imgchr.com/i/BzHONq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzHONq.png" alt></a></p>
+<p><img src="/vulnhub-DC4/4.png" alt></p>
 <p>二话不说，直接抓包改数据反弹shell。</p>
-<p><a href="https://imgchr.com/i/BzbFER" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzbFER.png" alt></a></p>
+<p><img src="/vulnhub-DC4/5.png" alt></p>
 <p>kali中监听端口，然后开启交互式shell。</p>
-<p><a href="https://imgchr.com/i/BzbRr4" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzbRr4.png" alt></a></p>
+<p><img src="/vulnhub-DC4/6.png" alt></p>
 <h1 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h1><p>我根据别人缩写wp看到了在/home/jim/backups的文件夹中有一个old-passwords的文件，cat一下，发现了一些有用的东西</p>
-<p><a href="https://imgchr.com/i/BzqgYt" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzqgYt.png" alt></a></p>
+<p><img src="/vulnhub-DC4/7.png" alt></p>
 <p>将文件中的密码copy一下，然后利用九头蛇以jim用户的身份（因为这是在jim用户的文件夹下，多半是jim用户的密码文件）连接靶机的ssh端口，最后成功爆破出来，密码为jibril04。</p>
-<p><a href="https://imgchr.com/i/BzLKAA" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzLKAA.png" alt></a></p>
+<p><img src="/vulnhub-DC4/8.png" alt></p>
 <p>通过ssh登录，接下来就是进一步的提权了</p>
-<p><a href="https://imgchr.com/i/BzLdNn" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzLdNn.png" alt></a></p>
+<p><img src="/vulnhub-DC4/9.png" alt></p>
 <p>我们在ls一下后发现有一个mbox的文件，cat一下，发现这类似一个邮件，</p>
-<p><a href="https://imgchr.com/i/BzOxo9" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzOxo9.png" alt></a></p>
+<p><img src="/vulnhub-DC4/10.png" alt></p>
 <p>于是我们到/var/mail这个默认邮件地址查看一手，发现有一个jim的邮件</p>
-<p><a href="https://imgchr.com/i/BzXdS0" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzXdS0.png" alt></a></p>
+<p><img src="/vulnhub-DC4/11.png" alt></p>
 <p>cat一下发现了charles的密码为^xHhA&amp;hvim0y</p>
-<p><a href="https://imgchr.com/i/BzXTTH" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzXTTH.png" alt></a></p>
+<p><img src="/vulnhub-DC4/12.png" alt></p>
 <p>直接用charles的账号通过ssh连接靶机</p>
-<p><a href="https://imgchr.com/i/BzjmBF" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzjmBF.png" alt></a></p>
+<p><img src="/vulnhub-DC4/13.png" alt></p>
 <p>然后利用产看此用户的权限，可以看到我们在teehee中是不需要root用户的密码就可以执行root的权限，所以这就是一个提权的点，</p>
-<p><a href="https://imgchr.com/i/BzjcDS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzjcDS.png" alt></a></p>
+<p><img src="/vulnhub-DC4/14.png" alt></p>
 <p>然后构造提权的语句</p>
 <pre class=" language-shell"><code class="language-shell">echo "fake::0:0:::/bin/bash" | sudo teehee -a /etc/passwd        
 //利用我们在teehee中的权限向/etc/passwd中加入一个具有root权限的名为fake的用户</code></pre>
-<p><a href="https://imgchr.com/i/BzvCDO" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzvCDO.png" alt></a></p>
+<p><img src="/vulnhub-DC4/15.png" alt></p>
 <p>然后切换用户成功提权，拿到flag</p>
-<p><a href="https://imgchr.com/i/BzvVPA" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/12/BzvVPA.png" alt></a></p>
+<p><img src="/vulnhub-DC4/16.png" alt></p>
 
             </div>
             <hr/>
@@ -908,7 +908,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">30.6k</span>&nbsp;字
+                class="white-color">31.6k</span>&nbsp;字
             
             
             
