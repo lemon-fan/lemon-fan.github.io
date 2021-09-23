@@ -620,21 +620,21 @@ categories: web扩展</code></pre><p>javaweb为java的web方面主要的书记�
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p>login.jsp：</p>
-<pre class=" language-jsp"><code class="language-jsp"><%@ page contenttype="text/html;charset=UTF-8" language="java" %>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 <meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 <body>
-<form action="/demo03">
-    账号<input type="text" name="uname">
-    <span id="msg"><%=request.getAttribute("msg") %></%=request.getAttribute("msg")></span>
+<form action="/demo03" >
+    账号<input type="text" name="uname"/>
+    <span id="msg"><%=request.getAttribute("msg") %></span>
     <br>
     <button>上线</button>
 
 </form>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html></%@></code></pre>
+</html></code></pre>
 <p>index.html：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -988,34 +988,34 @@ resp<span class="token punctuation">.</span><span class="token function">addCook
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/07/31/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <a href="/2021/09/23/vulnhub-doubletrouble/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/07.jpg" class="responsive-img" alt="javaweb学习笔记">
+                        <img src="https://cdn.jsdelivr.net/gh/lemon-fan/lemon-fan.github.io/medias/featureimages/03.jpg" class="responsive-img" alt="vulnhub-doubletrouble">
                         
-                        <span class="card-title">javaweb学习笔记</span>
+                        <span class="card-title">vulnhub-doubletrouble</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            title: javaweb学习笔记
-tags: 语言基础
+                            title: vulnhub-doubletrouble
+author: lemon-fan
+date: 2021-09-23 16:29:11
+tags: web基础
 toc: true
-categories: web扩展javaweb为java的web方面主要的书记应用为jsp等
-http请求http协议为互联网传输信息的一种规则，与之类似的还
+categories: web渗透一个月没怎么学习
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1024,7 +1024,6 @@ http请求http协议为互联网传输信息的一种规则，与之类似的还
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -1214,7 +1213,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">41.1k</span>&nbsp;字
+                class="white-color">42k</span>&nbsp;字
             
             
             
