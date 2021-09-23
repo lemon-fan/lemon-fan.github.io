@@ -455,7 +455,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-22
+                    2021-09-23
                 </div>
                 
 
@@ -485,7 +485,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>javaweb为java的web方面主要的书记应用为jsp等</p>
+                <pre><code>title: javaweb学习笔记
+tags: 语言基础
+toc: true
+categories: web扩展</code></pre><p>javaweb为java的web方面主要的书记应用为jsp等</p>
 <h4 id="http请求"><a href="#http请求" class="headerlink" title="http请求"></a>http请求</h4><p>http协议为互联网传输信息的一种规则，与之类似的还有ftp这样的协议。</p>
 <h5 id="http特点"><a href="#http特点" class="headerlink" title="http特点"></a>http特点</h5><blockquote>
 <ul>
@@ -617,21 +620,21 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p>login.jsp：</p>
-<pre class=" language-jsp"><code class="language-jsp"><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<pre class=" language-jsp"><code class="language-jsp"><%@ page contenttype="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
 <meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 <body>
-<form action="/demo03" >
-    账号<input type="text" name="uname"/>
-    <span id="msg"><%=request.getAttribute("msg") %></span>
+<form action="/demo03">
+    账号<input type="text" name="uname">
+    <span id="msg"><%=request.getAttribute("msg") %></%=request.getAttribute("msg")></span>
     <br>
     <button>上线</button>
 
 </form>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html></code></pre>
+</html></%@></code></pre>
 <p>index.html：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -1002,12 +1005,11 @@ resp<span class="token punctuation">.</span><span class="token function">addCook
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            javaweb为java的web方面主要的书记应用为jsp等
-http请求http协议为互联网传输信息的一种规则，与之类似的还有ftp这样的协议。
-http特点
-
-http在传输的时候会以服务端客户端的模式进行传输。
-http的客户端传输请
+                            title: javaweb学习笔记
+tags: 语言基础
+toc: true
+categories: web扩展javaweb为java的web方面主要的书记应用为jsp等
+http请求http协议为互联网传输信息的一种规则，与之类似的还
                         
                     </div>
                     <div class="publish-info">
@@ -1045,10 +1047,11 @@ http的客户端传输请
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            java认知java为编译性的语言，应用很广泛，java对于类型具有很严格的限制，是一种强类型的语言
-//定义一个公开的类Start
-public class Start {
-    //定义main函数默认参数必须为String[] ar
+                            title: java学习笔记(浅学版)
+tags: 语言基础
+toc: true
+categories: web扩展java认知java为编译性的语言，应用很广泛，java对于类型具有很严格的限制，是一种强类型的语言
+//定义一个公开的类
                         
                     </div>
                     <div class="publish-info">
