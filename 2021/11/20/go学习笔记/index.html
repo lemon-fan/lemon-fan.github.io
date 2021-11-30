@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-30
+                    2021-12-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    16.9k
+                    17.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    65 分
+                    66 分
                 </div>
                 
 
@@ -1401,8 +1401,9 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
 <span class="token punctuation">}</span> 
 <span class="token comment" spellcheck="true">//此函数传入的参数不会管你传入的参数是什么，唯一关心的是你传入的参数中是否含有speaker这个方法</span></code></pre>
 <p>如果我们定义了一个接口类型的变量s，定义一个person类型的变量a（person是我们自己定义的一个结构体类型），然后传入参数给此变量，然后我们会发现变量s的类型会变为person，这是因为接口为了实现对不同类型的传入变量进行统一进行方法的运算，在定义一个接口类型的变量时，变量的动态类型和动态值均为nil，在上述例子中变量s的初始类型和初始值均为nil，我们在传入变量a的同时也将变量a的类型传入了进去，让s变量的动态类型为person动态值为a的值。</p>
-<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><p>在上边的过程都为其他类型转换为接口类型，那么由接口类型转换为其他类型的过程是怎么转换的，接下来会进行粗略的讲解。</p>
-<pre><code>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。    ————引自c语言中文网</code></pre><p>具体例子如下：</p>
+<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><p>在上边的过程都为其他类型转换为接口类型，那么由接口类型转换为其他类型的过程是怎么转换的（实际上底层还是接口类型），接下来会进行粗略的讲解。</p>
+<pre><code>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。    ————引自c语言中文网</code></pre><p>注意以上的定义中是接口值的操作，也就是我们动态的传入接口的东西</p>
+<h5 id="非空接口的类型断言"><a href="#非空接口的类型断言" class="headerlink" title="非空接口的类型断言"></a>非空接口的类型断言</h5><p>具体例子如下：</p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
@@ -1429,6 +1430,7 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
 <p>v, ok := c.(wdnmd)</p>
 <p>基本原理为：检查c的底层类型是否为我们所定义的wdnmd类型，如果是返回true并将值赋值给v，如果不是则会出现panic</p>
 <p>具体的实现过程如下：</p>
+<p>（这里我暂时还有疑问就是这里的参数中的inter参数是谁的inter）</p>
 <p>前半部分的过程为接收传入的值类型并生成相关的iftab结构体（同上边的方法为指针的类型转换的过程相似），不同的是，我们在生成相关的itab结构体和数据的指针后会调用一个函数runtime.assertI2I2()，这个函数主要作用就是用来做检测的，它传入的参数为inter <em>interfacetype, i iface，前一个为我们非空接口中那个inter字段，然后iface由于它是由itab和data两部分组成，所以实际上我们是传入三个参数 * interfacetype，</em> itab，data，然后此函数的具体代码如下：</p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">assertI2I2</span><span class="token punctuation">(</span>inter <span class="token operator">*</span>interfacetype<span class="token punctuation">,</span> i iface<span class="token punctuation">)</span> <span class="token punctuation">(</span>r iface<span class="token punctuation">,</span> b <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     tab <span class="token operator">:=</span> i<span class="token punctuation">.</span>tab
@@ -1446,8 +1448,42 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
     b <span class="token operator">=</span> <span class="token boolean">true</span>
     <span class="token keyword">return</span>
 <span class="token punctuation">}</span><span class="token comment" spellcheck="true">//我从go的github官方抄的</span></code></pre>
-<p>先是做了tab的为nil判断，然后是inter类型的相等判断，如果不相等再利用getitea含糊根据传入的inter和tab中type进行新生成一个tab，然后就是赋值返回了，另外我在另一篇文章里也看到了另外一种的判断方法是根据tab中的hash值同特定的hash值进行判断（感觉是以前的go版本的判断方法）</p>
-<p>然后就是将此函数的返回值赋值给我们上边自己定义的v和ok，这里我感觉其实真正重要的是itab中inter的对比，因为类型断言要得就是你最底层的类型比对结果</p>
+<p>先是做了tab的为nil判断，然后是inter类型的相等判断，如果不相等再利用getitea函数根据传入的inter和tab中type进行新生成一个tab，然后就是赋值返回了，另外我在另一篇文章里看到了另外一种的判断方法是根据tab中的hash值同特定的hash值进行判断（感觉是以前的go版本的判断方法）</p>
+<p>然后就是将此函数的返回值赋值给我们上边自己定义的v和ok，这里我感觉其实真正重要的是itab中inter的对比，因为类型断言要得就是你最底层的类型比对结果。</p>
+<p>至于类型查询（type switch）和动态派发，直接放弃了，属实是难顶。</p>
+<h5 id="接下来是空接口的类型断言（这里我有没有看懂的地方，如果不对欢迎指出）"><a href="#接下来是空接口的类型断言（这里我有没有看懂的地方，如果不对欢迎指出）" class="headerlink" title="接下来是空接口的类型断言（这里我有没有看懂的地方，如果不对欢迎指出）"></a>接下来是空接口的类型断言（这里我有没有看懂的地方，如果不对欢迎指出）</h5><p>例子如下：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">type</span> wdnmd <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> sss <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p <span class="token operator">*</span>person<span class="token punctuation">)</span> <span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"wdnmd"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> c wdnmd <span class="token operator">=</span> <span class="token operator">&amp;</span>person<span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"wwww"</span><span class="token punctuation">}</span>
+    <span class="token keyword">var</span> a sss <span class="token operator">=</span> person<span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">"ssss"</span><span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%T\n"</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span>
+    s<span class="token punctuation">,</span>ok <span class="token operator">:=</span> a<span class="token punctuation">.</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span>
+    <span class="token keyword">if</span>  <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"wdnmdssss"</span><span class="token punctuation">,</span>s<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    v<span class="token punctuation">,</span> ok <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token punctuation">(</span>sss<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"wdnmdaaaa"</span><span class="token punctuation">,</span>v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%T\n"</span><span class="token punctuation">,</span>c<span class="token punctuation">)</span>
+    c<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>空接口的类型断言大致比较原理是将目标类型的*type和空接口中的 *_type进行对比，相同返回true和对应的值，失败则会返回false出现panic，我这里就产生了一个疑问就是，如果我类型断言的不是person而是sss他确实会发生变化，但是我感觉此时空接口的type字段存储的应该是person的类型hash那么这是如何比较的呢？，在上边的非空接口也有类似这样的疑问，具体是我如果类型断言的对象不是person而是非空接口，比对过程又是怎么样的呢？</p>
 <h3 id="值接收者和指针接收者"><a href="#值接收者和指针接收者" class="headerlink" title="值接收者和指针接收者"></a>值接收者和指针接收者</h3><p>结构体的方法参数分为值接收和指针接收，两者的区别为：</p>
 <p>值接收者能够接收指针和数据类型，而指针接收者只能接收指针。代码层面最根本的差别是方法传入参数的差别，在平常的使用中最常见的是指针接收者</p>
 <h3 id><a href="#" class="headerlink" title></a></h3><p>如果想要对一个结构体实现多个接口，只需定义不同的方法再分别用不同的接口函数进行调用就可实现一个结构体对应多个接口。同时，接口之间可以进行嵌套，示例：</p>
@@ -2406,7 +2442,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">46.3k</span>&nbsp;字
+                class="white-color">46.7k</span>&nbsp;字
             
             
             
