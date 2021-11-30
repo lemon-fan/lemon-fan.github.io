@@ -468,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-20
+                    2021-11-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    14.2k
+                    16.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    55 分
+                    65 分
                 </div>
                 
 
@@ -1313,8 +1313,86 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
     smr<span class="token punctuation">.</span>allstudent<span class="token punctuation">[</span>stuid<span class="token punctuation">]</span> <span class="token operator">=</span> strnew
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口的定义：</p>
-<p>（本人暂时搞不懂）</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><h4 id="接口的定义"><a href="#接口的定义" class="headerlink" title="接口的定义"></a>接口的定义</h4><p>接口为一种类型，在此类型中，可以存在有多个方法，如果实现了此接口内部的所有方法表示实现了此接口，但是go语言的接口实现并不是像java中那样的显式实现（需要在我们自己所写的的代码中进行声明），它会是隐式的实现，下边举个例子：（此例子为部分代码）</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> Duck <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Quack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Cat <span class="token keyword">struct</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Cat<span class="token punctuation">)</span> <span class="token function">Quack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"meow"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在上边的例子中我们可以看到我们在cat的方法中压根就有看到Duck的影子，但我们可以说是Cat结构体实现了Duck这个方法，这和著名的鸭子模型很像，鸭子模型的表述为：</p>
+<pre><code>当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子     --引自维基百科</code></pre><p>同样的我们在这里说我实现了你这个接口所有的方法，那么我就实现了你这个接口，类比一下我实现了这个接口的所有方法相当于我具有一只鸭子的已确定的我们当前定义鸭子的所有特征，而实现这个接口相当于我就是一只鸭子。</p>
+<p>在go语言中如果我实现了你这个接口的所有方法，那么我就隐式的实现了你这个接口，注意这里是隐式的实现，如果只看上边的代码，很多人会以为我确实是实现了Duck这个结构，但是还是会感觉我在程序运行时并没有实现这个接口，</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"reflect"</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">type</span> Duck <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Quack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Cat <span class="token keyword">struct</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Cat<span class="token punctuation">)</span> <span class="token function">Quack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"meow"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> c Cat
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>reflect<span class="token punctuation">.</span><span class="token function">TypeOf</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    c<span class="token punctuation">.</span><span class="token function">Quack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>实际上我们如果按照上边的示例执行的话在编辑器中也确实会出现会出现Duck未被使用，但是go程序运行时并没有爆出相关的错误，要知道go对于定义未使用的变量这些要求是很严格的，实际上我们此程序运行时，编译器会隐式的将我们的c.Quack转换为Duck类型从而实现，所以我在上边强调了隐式。</p>
+<p>再来说一下接口的具体类型，我们知道go语言和python，PHP这些语言不一样，它是静态语言，这也就导致了我们对一个变量的类型，如果不对其进行类型的强制转换变量的类型在整个程序运行的过程中是不会发生转换的，如果我们定义了一个interface类型的变量其类型判断输出会是nil，而为什么会是nil，接口类型的静态类型就是它本身也就是interface，但是接口本身没有专属于自己的静态值，它的静态值指向的是传入的动态值，而这个动态值会在接下来进行解释</p>
+<p>接口按照底层构造不同细分为两种类型，一种为所定义的内部具有具体方法的接口（iface），一种为空接口（接口里边啥都没有）（eface），这两种接口的底层不完全一样，</p>
+<p>eface的底层具体由_type类型的指针和unsafe.Pointer类型的变量data</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> eface <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 16 字节</span>
+    _type <span class="token operator">*</span>_type
+    data  unsafe<span class="token punctuation">.</span>Pointer
+<span class="token punctuation">}</span></code></pre>
+<p>而对于iface的底层代码为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> iface <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 16 字节</span>
+    tab  <span class="token operator">*</span>itab
+    data unsafe<span class="token punctuation">.</span>Pointer
+<span class="token punctuation">}</span></code></pre>
+<p>这两个接口的type字段不太相同，由于go语言的这类类似函数的传值都是只拷贝传入元数据的副本，所以两个接口类型的data字段所指向的都是传入接口的数据的副本</p>
+<p>在空接口的底层组成中的type指针所指的是一个type类型的结构体，此结构体的大致组成为：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> _type <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    size       <span class="token builtin">uintptr</span>
+    ptrdata    <span class="token builtin">uintptr</span>
+    hash       <span class="token builtin">uint32</span>
+    tflag      tflag
+    align      <span class="token builtin">uint8</span>
+    fieldAlign <span class="token builtin">uint8</span>
+    kind       <span class="token builtin">uint8</span>
+    equal      <span class="token keyword">func</span><span class="token punctuation">(</span>unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">,</span> unsafe<span class="token punctuation">.</span>Pointer<span class="token punctuation">)</span> <span class="token builtin">bool</span>
+    gcdata     <span class="token operator">*</span><span class="token builtin">byte</span>
+    str        nameOff
+    ptrToThis  typeOff
+<span class="token punctuation">}</span></code></pre>
+<p>size 变量主要是存储此类型所占用的空间大小，hash字段是为判断类型的是否相等，目前我所了解的就只有这么多</p>
+<p>对于非空接口的内部组成的itab类型的结构体其组成大致为：</p>
+<pre class=" language-go"><code class="language-go">    inter <span class="token operator">*</span>interfacetype
+    _type <span class="token operator">*</span>_type
+    hash  <span class="token builtin">uint32</span>
+    <span class="token boolean">_</span>     <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token builtin">byte</span>
+    fun   <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token builtin">uintptr</span></code></pre>
+<p>其中inter这个interface指针类型的变量存储的是当前interface的静态类型也就是interface，而下边的type存储的是在利用此接口时所传进来的变量的具体类型信息，hash字段存储的是传入值相关类型的hash值（和type字段中的hash值一致），func则存储的是具体的方法函数的地址，看起来它只有一个长度，如果遇到多个方法可以利用指针偏移进行相关方法的寻找。</p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>我们都知道接口这个东西你如果实现了它那么它就会被显式或者隐式的实现，所以现在来说一下我们具体是如何实现接口的（<del>由于本人实在不会汇编这里只能简单说一下</del>）</p>
+<h5 id="方法为指针类型的转换"><a href="#方法为指针类型的转换" class="headerlink" title="方法为指针类型的转换"></a>方法为指针类型的转换</h5><p>大致的流程为：先对此结构体进行初始化，然后将其转换为接口类型，然后调用接口方法（感觉和把大象放进冰箱的本质一样）</p>
+<p>那么对于结构体类型的指针的初始化的流程为</p>
+<p>1.将结构体类型指针入栈，注意是类型指针（也就是_type）</p>
+<p>2.然后调用runtime.newobject这个函数，参数为我们传入的结构体指针，函数的返回值为为我们的结构体分配的内存的指针此返回值会在SP+8这个位置（SP: 栈顶，栈帧的结束位置），然后把栈上的指针拷贝到寄存器 DI 上方便操作（这一步不太理解），然后就是对结构体长度的判断和数据存储。</p>
+<p>简单点来说就是我们先把结构体类型的指针放在一个空间有限的临时空间中，这时候我们肯定不能把这个指针长时间放在这，所以就调用一个函数给这个指针所指的结构体分配存储空间，然后就是把数据往里边存储。</p>
+<p>以上为结构体的初始化过程那么转换类型，具体是怎么转换为接口类型的大致流程为：</p>
+<p>由于我们在SP上存储了传入的结构体类型指针，这与接口中那个type是一样的，那么我们可以利用相关函数，将此copy到interface类型的type类型中，然后再利用汇编语言生成一个完整的itab类型的结构体，接着是数据部分，就是将原来结构体存储空间的地址赋值给data字段。</p>
+<p>我们如果在最后看到方法的真正执行结果会发现最后的执行函数是我们的结构体外加方法，而不是接口名加方法，这是因为go语言的编译器在调用相关方法期间会将方法的动态调用改为对目标方法的静态调用，主要是为了节省性能。<del>（这段我抄的）</del></p>
+<h5 id="对于方法的结构体的初始化的过程为："><a href="#对于方法的结构体的初始化的过程为：" class="headerlink" title="对于方法的结构体的初始化的过程为："></a>对于方法的结构体的初始化的过程为：</h5><p>具体过程和上边的相差不大，但毕竟是传入的结构体类型还是会有差别</p>
+<p>首先先是接受对应的结构体并将结构体数据存储到内存中，接下来会调用runtime.convTstring这个函数会将我们结构体存储的数据传入然后返回一个unsafe.Pointer类型的返回值，这个值是不是很眼熟，就是接口类型结构体的数据部分，然后我们会和上边的指针类型相似会根据传入的结构体类型构造itab类型的结构体。</p>
 <p>定义一个接口，语法为：</p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> speaker <span class="token keyword">interface</span>    <span class="token comment" spellcheck="true">//定义一个名为speaker的接口类型</span></code></pre>
 <p>定义一个传入参数为接口类型的函数：</p>
@@ -1323,6 +1401,53 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
 <span class="token punctuation">}</span> 
 <span class="token comment" spellcheck="true">//此函数传入的参数不会管你传入的参数是什么，唯一关心的是你传入的参数中是否含有speaker这个方法</span></code></pre>
 <p>如果我们定义了一个接口类型的变量s，定义一个person类型的变量a（person是我们自己定义的一个结构体类型），然后传入参数给此变量，然后我们会发现变量s的类型会变为person，这是因为接口为了实现对不同类型的传入变量进行统一进行方法的运算，在定义一个接口类型的变量时，变量的动态类型和动态值均为nil，在上述例子中变量s的初始类型和初始值均为nil，我们在传入变量a的同时也将变量a的类型传入了进去，让s变量的动态类型为person动态值为a的值。</p>
+<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><p>在上边的过程都为其他类型转换为接口类型，那么由接口类型转换为其他类型的过程是怎么转换的，接下来会进行粗略的讲解。</p>
+<pre><code>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。    ————引自c语言中文网</code></pre><p>具体例子如下：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">type</span> wdnmd <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    name <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p <span class="token operator">*</span>person<span class="token punctuation">)</span> <span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"wdnmd"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> c wdnmd <span class="token operator">=</span> <span class="token operator">&amp;</span>person<span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"wwww"</span><span class="token punctuation">}</span>
+    v<span class="token punctuation">,</span> ok <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token punctuation">(</span>wdnmd<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%v\n"</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%T\n"</span><span class="token punctuation">,</span>c<span class="token punctuation">)</span>
+    c<span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>我们在main函数中定义了一个wdnmd类型的变量c同时也给它复制成了person结构体的指针，而我们的输出结果为c为person类型的指针，这其中就用到了类型断言。用到类型断言的部分为：</p>
+<p>v, ok := c.(wdnmd)</p>
+<p>基本原理为：检查c的底层类型是否为我们所定义的wdnmd类型，如果是返回true并将值赋值给v，如果不是则会出现panic</p>
+<p>具体的实现过程如下：</p>
+<p>前半部分的过程为接收传入的值类型并生成相关的iftab结构体（同上边的方法为指针的类型转换的过程相似），不同的是，我们在生成相关的itab结构体和数据的指针后会调用一个函数runtime.assertI2I2()，这个函数主要作用就是用来做检测的，它传入的参数为inter <em>interfacetype, i iface，前一个为我们非空接口中那个inter字段，然后iface由于它是由itab和data两部分组成，所以实际上我们是传入三个参数 * interfacetype，</em> itab，data，然后此函数的具体代码如下：</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">assertI2I2</span><span class="token punctuation">(</span>inter <span class="token operator">*</span>interfacetype<span class="token punctuation">,</span> i iface<span class="token punctuation">)</span> <span class="token punctuation">(</span>r iface<span class="token punctuation">,</span> b <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tab <span class="token operator">:=</span> i<span class="token punctuation">.</span>tab
+    <span class="token keyword">if</span> tab <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> tab<span class="token punctuation">.</span>inter <span class="token operator">!=</span> inter <span class="token punctuation">{</span>
+        tab <span class="token operator">=</span> <span class="token function">getitab</span><span class="token punctuation">(</span>inter<span class="token punctuation">,</span> tab<span class="token punctuation">.</span>_type<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> tab <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    r<span class="token punctuation">.</span>tab <span class="token operator">=</span> tab
+    r<span class="token punctuation">.</span>data <span class="token operator">=</span> i<span class="token punctuation">.</span>data
+    b <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token keyword">return</span>
+<span class="token punctuation">}</span><span class="token comment" spellcheck="true">//我从go的github官方抄的</span></code></pre>
+<p>先是做了tab的为nil判断，然后是inter类型的相等判断，如果不相等再利用getitea含糊根据传入的inter和tab中type进行新生成一个tab，然后就是赋值返回了，另外我在另一篇文章里也看到了另外一种的判断方法是根据tab中的hash值同特定的hash值进行判断（感觉是以前的go版本的判断方法）</p>
+<p>然后就是将此函数的返回值赋值给我们上边自己定义的v和ok，这里我感觉其实真正重要的是itab中inter的对比，因为类型断言要得就是你最底层的类型比对结果</p>
 <h3 id="值接收者和指针接收者"><a href="#值接收者和指针接收者" class="headerlink" title="值接收者和指针接收者"></a>值接收者和指针接收者</h3><p>结构体的方法参数分为值接收和指针接收，两者的区别为：</p>
 <p>值接收者能够接收指针和数据类型，而指针接收者只能接收指针。代码层面最根本的差别是方法传入参数的差别，在平常的使用中最常见的是指针接收者</p>
 <h3 id><a href="#" class="headerlink" title></a></h3><p>如果想要对一个结构体实现多个接口，只需定义不同的方法再分别用不同的接口函数进行调用就可实现一个结构体对应多个接口。同时，接口之间可以进行嵌套，示例：</p>
@@ -2281,7 +2406,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">43.6k</span>&nbsp;字
+                class="white-color">46.3k</span>&nbsp;字
             
             
             
